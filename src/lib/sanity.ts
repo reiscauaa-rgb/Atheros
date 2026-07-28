@@ -1,0 +1,119 @@
+import { createClient } from 'next-sanity';
+import { createImageUrlBuilder } from '@sanity/image-url';
+type SanityImageSource = any;
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';
+const dataset   = process.env.NEXT_PUBLIC_SANITY_DATASET   || 'production';
+const isSanityConfigured = Boolean(projectId && /^[a-z0-9-]+$/.test(projectId));
+
+export const config = {
+  projectId: isSanityConfigured ? projectId : 'placeholder',
+  dataset,
+  apiVersion: '2024-01-01',
+  useCdn: process.env.NODE_ENV === 'production',
+};
+
+export const sanityClient = isSanityConfigured ? createClient(config) : null;
+
+const builder = isSanityConfigured ? createImageUrlBuilder(config) : null;
+
+export function urlFor(source: SanityImageSource) {
+  if (!builder || !source) return { url: () => '' } as any;
+  return builder.image(source);
+}
+
+// ─────────────────────────────────────────
+// Types
+// ─────────────────────────────────────────
+
+export interface Post {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  publishedAt: string;
+  category: string;
+  excerpt: string;
+  mainImage: SanityImageSource & { alt?: string };
+  author?: { name: string; photo?: SanityImageSource };
+  body?: unknown[];
+  // English versions (optional)
+  titleEn?: string;
+  excerptEn?: string;
+  bodyEn?: unknown[];
+}
+
+// ─────────────────────────────────────────
+// GROQ Queries
+// ─────────────────────────────────────────
+
+/** Todos os posts ordenados por data */
+export async function getAllPosts(): Promise<Post[]> {
+  if (!sanityClient) return [];
+  return sanityClient.fetch(
+    `*[_type == "post"] | order(publishedAt desc) {
+      _id,
+      title, titleEn,
+      slug,
+      publishedAt,
+      "category": category->title,
+      excerpt, excerptEn,
+      mainImage,
+      author
+    }`
+  );
+}
+
+const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
+  _id,
+  title, titleEn,
+  slug,
+  publishedAt,
+  "category": category->title,
+  excerpt, excerptEn,
+  mainImage,
+  author,
+  body, bodyEn
+}`;
+
+/** Post individual por slug */
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  if (!sanityClient) return null;
+  const result = await sanityClient.fetch(POST_QUERY, { slug });
+  return result ?? null;
+}
+
+/** Todas as categorias distintas */
+export async function getCategories(): Promise<string[]> {
+  if (!sanityClient) return [];
+  return sanityClient.fetch(
+    `array::unique(*[_type == "post" && defined(category)].category->title) | order(@ asc)`
+  );
+}
+
+/** Posts relacionados na mesma categoria */
+export async function getRelatedPosts(category: string, excludeId: string): Promise<Post[]> {
+  if (!sanityClient) return [];
+  return sanityClient.fetch(
+    `*[_type == "post" && category->title == $category && _id != $excludeId] | order(publishedAt desc)[0...3] {
+      _id,
+      title,
+      slug,
+      publishedAt,
+      "category": category->title,
+      excerpt,
+      mainImage
+    }`,
+    { category, excludeId }
+  );
+}
+
+/** Estima tempo de leitura em minutos a partir do Portable Text */
+export function estimateReadTime(body: unknown[]): number {
+  if (!body) return 1;
+  const text = body
+    .filter((b: any) => b._type === 'block')
+    .map((b: any) => b.children?.map((c: any) => c.text).join('') ?? '')
+    .join(' ');
+  const words = text.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}

@@ -1,0 +1,122 @@
+.hero {
+  position: relative;
+  padding: calc(var(--header-height) + var(--space-20)) 0 var(--space-20);
+  background: var(--color-primary);
+  overflow: hidden;
+}
+.heroBg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+}
+.heroBg::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(248,160,0,0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.heroContent { position: relative; z-index: 1; max-width: 700px; }
+.heroEyebrow {
+  display: inline-block; font-size: var(--font-size-sm); font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: var(--space-4);
+}
+.heroTitle {
+  font-family: var(--font-heading); font-size: clamp(var(--font-size-5xl), 7vw, var(--font-size-6xl));
+  font-weight: 700; color: var(--color-white); text-transform: uppercase; line-height: 1.05; margin-bottom: var(--space-5);
+}
+.heroSub { font-size: var(--font-size-md); color: rgba(255,255,255,0.75); line-height: 1.7; }
+
+/* ── Services ── */
+.servicesSection { padding: var(--space-24) 0; background: var(--color-white); }
+
+.serviceBlock {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: var(--space-16);
+  align-items: start;
+  padding: var(--space-16) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.serviceBlock:last-child { border-bottom: none; }
+.serviceBlockReverse { direction: rtl; }
+.serviceBlockReverse > * { direction: ltr; }
+
+/* Visual side */
+.serviceVisual { display: flex; flex-direction: column; gap: var(--space-6); }
+
+.serviceIconWrap {
+  width: 100px; height: 100px;
+  background: var(--color-primary);
+  border-radius: var(--radius-lg);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-md);
+}
+.serviceIcon { font-size: 3rem; }
+
+.serviceQuickDocs {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex; flex-direction: column; gap: var(--space-4);
+}
+.serviceDocsTitle {
+  font-family: var(--font-heading); font-size: var(--font-size-sm); font-weight: 600;
+  color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.serviceDocsList { display: flex; flex-direction: column; gap: var(--space-2); }
+.serviceDocItem {
+  display: flex; align-items: center; gap: var(--space-2);
+  font-size: var(--font-size-sm); color: var(--color-text-muted);
+}
+.serviceDocItem svg { color: var(--color-accent); flex-shrink: 0; }
+.serviceCtaBtn {
+  display: block; text-align: center; margin-top: var(--space-2);
+  padding: 0.875rem; background: var(--color-accent); color: var(--color-primary-dark);
+  font-weight: 700; font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: 0.06em;
+  border-radius: var(--radius-full); transition: all var(--transition-base);
+}
+.serviceCtaBtn:hover { background: var(--color-accent-dark); transform: translateY(-2px); }
+
+/* Content side */
+.serviceContent { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.serviceNum {
+  font-family: var(--font-heading); font-size: var(--font-size-6xl); font-weight: 700;
+  color: var(--color-primary); opacity: 0.08; line-height: 1; margin-bottom: calc(-1 * var(--space-8));
+}
+.serviceTitle {
+  font-family: var(--font-heading); font-size: clamp(var(--font-size-2xl), 3vw, var(--font-size-4xl));
+  font-weight: 700; color: var(--color-primary); text-transform: uppercase; line-height: 1.1;
+}
+.serviceSubtitle {
+  font-size: var(--font-size-base); font-weight: 600;
+  color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.06em;
+}
+.serviceDesc { font-size: var(--font-size-base); color: var(--color-text-muted); line-height: 1.8; }
+
+.stepsTitle {
+  font-family: var(--font-heading); font-size: var(--font-size-base); font-weight: 600;
+  color: var(--color-text); text-transform: uppercase; letter-spacing: 0.06em; margin-top: var(--space-2);
+}
+.stepsList { display: flex; flex-direction: column; gap: var(--space-3); }
+.stepItem {
+  display: flex; align-items: flex-start; gap: var(--space-3);
+  font-size: var(--font-size-sm); color: var(--color-text); line-height: 1.5;
+}
+.stepNum {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--color-primary);
+  color: var(--color-white); font-size: var(--font-size-xs); font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+.warningBox {
+  background: rgba(248,160,0,0.08); border: 1px solid rgba(248,160,0,0.3);
+  border-radius: var(--radius-md); padding: var(--space-4);
+}
+.warningBox strong { display: block; color: var(--color-accent); font-size: var(--font-size-sm); margin-bottom: var(--space-1); }
+.warningBox p { font-size: var(--font-size-sm); color: var(--color-text-muted); line-height: 1.6; }
+
+@media (max-width: 1024px) {
+  .serviceBlock, .serviceBlockReverse { grid-template-columns: 1fr; direction: ltr; }
+  .serviceIconWrap { width: 72px; height: 72px; }
+  .serviceIcon { font-size: 2rem; }
+}

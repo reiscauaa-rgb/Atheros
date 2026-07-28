@@ -1,0 +1,83 @@
+.hero {
+  position: relative;
+  padding: calc(var(--header-height) + var(--space-20)) 0 var(--space-20);
+  background: var(--color-primary);
+  overflow: hidden;
+}
+.heroBg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%); }
+.heroBg::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(248,160,0,0.07) 1px, transparent 1px); background-size: 32px 32px; }
+.heroContent { position: relative; z-index: 1; max-width: 700px; }
+.heroEyebrow { display: inline-block; font-size: var(--font-size-sm); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: var(--space-4); }
+.heroTitle { font-family: var(--font-heading); font-size: clamp(var(--font-size-4xl), 5vw, var(--font-size-5xl)); font-weight: 700; color: var(--color-white); text-transform: uppercase; line-height: 1.1; margin-bottom: var(--space-5); }
+.heroSub { font-size: var(--font-size-md); color: rgba(255,255,255,0.75); line-height: 1.7; max-width: 560px; }
+
+/* ── Main ── */
+.main { padding: var(--space-16) 0 var(--space-24); background: var(--color-bg-alt); }
+
+/* Category filter */
+.catFilter { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-10); }
+.catBtn {
+  font-family: var(--font-body); font-size: var(--font-size-sm); font-weight: 600;
+  padding: 0.5rem 1.25rem; border-radius: var(--radius-full); border: 1.5px solid var(--color-border);
+  background: var(--color-white); color: var(--color-text-muted); cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.catBtn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.catBtnActive { background: var(--color-primary) !important; color: var(--color-white) !important; border-color: var(--color-primary) !important; }
+
+/* FAQ list */
+.faqList { display: flex; flex-direction: column; gap: var(--space-3); max-width: 800px; }
+
+.item {
+  background: var(--color-white); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); overflow: hidden;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.item.open { border-color: var(--color-primary); box-shadow: 0 4px 20px rgba(20,38,107,0.1); }
+
+.question {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+  padding: var(--space-5) var(--space-6); background: none; text-align: left; cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.question:hover { background: var(--color-bg-alt); }
+.open .question { background: rgba(20,38,107,0.03); }
+
+.questionText { font-size: var(--font-size-base); font-weight: 600; color: var(--color-text); line-height: 1.5; flex: 1; }
+.open .questionText { color: var(--color-primary); }
+
+.icon { flex-shrink: 0; color: var(--color-text-muted); }
+.open .icon { color: var(--color-primary); }
+
+.answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--transition-slow); }
+.open .answer { grid-template-rows: 1fr; }
+
+.answerText {
+  overflow: hidden; padding: 0 var(--space-6);
+  font-size: var(--font-size-base); color: var(--color-text-muted); line-height: 1.8;
+  transition: padding var(--transition-slow);
+}
+.open .answerText { padding-top: var(--space-1); padding-bottom: var(--space-5); }
+
+/* Not found */
+.notFound {
+  display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap;
+  margin-top: var(--space-12); padding: var(--space-8);
+  background: var(--color-white); border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border); max-width: 800px;
+}
+.notFound p { font-size: var(--font-size-base); color: var(--color-text-muted); flex: 1; }
+.notFoundBtn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--font-size-sm); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; padding: 0.75rem 1.5rem;
+  background: var(--color-whatsapp); color: var(--color-white);
+  border-radius: var(--radius-full); transition: all var(--transition-fast); white-space: nowrap;
+}
+.notFoundBtn:hover { background: var(--color-whatsapp-dark); transform: translateY(-1px); }
+
+@media (max-width: 640px) {
+  .catFilter { gap: var(--space-2); }
+  .notFound { flex-direction: column; align-items: stretch; }
+  .notFoundBtn { text-align: center; justify-content: center; }
+}
