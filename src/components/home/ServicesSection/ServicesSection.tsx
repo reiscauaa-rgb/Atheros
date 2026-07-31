@@ -1,9 +1,12 @@
 'use client';
 
+import { useRef } from 'react';
 import ScrollReveal from '@/components/ScrollReveal/ScrollReveal';
 import styles from './ServicesSection.module.css';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import Link from 'next/link';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 const services = {
   pt: [
@@ -83,20 +86,37 @@ export default function ServicesSection() {
   const { language } = useLanguage();
   const copy = t[language];
   const items = services[language];
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useGSAP(() => {
+    gsap.from('.anim-line', {
+      scrollTrigger: {
+        trigger: titleRef.current,
+        start: 'top 85%',
+        toggleActions: 'restart none none reset',
+      },
+      rotationX: -100,
+      transformOrigin: '50% 50% -160px',
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3',
+      stagger: 0.25,
+    });
+  }, { scope: sectionRef });
 
   return (
-    <section className={styles.section} id="servicos">
+    <section ref={sectionRef} className={styles.section} id="servicos">
       <div className="container">
         {/* Header */}
         <ScrollReveal variant="fadeUp">
           <div className={styles.header}>
             <span className="section-label">{copy.eyebrow}</span>
-            <h2 className={styles.title}>
+            <h2 ref={titleRef} className={styles.title}>
               {copy.title.split('\n').map((line, i) => (
-                <span key={i}>
+                <div key={i} className="anim-line" style={{ display: 'inline-block', width: '100%' }}>
                   {i === 1 ? <em className={styles.titleAccent}>{line}</em> : line}
-                  {i === 0 && <br />}
-                </span>
+                </div>
               ))}
             </h2>
             <p className={styles.subtitle}>{copy.subtitle}</p>
@@ -107,7 +127,7 @@ export default function ServicesSection() {
         <div className={styles.grid}>
           {items.map((service, i) => (
             <ScrollReveal key={service.id} variant="fadeUp" delay={i * 120} className={styles.cardWrapper}>
-              <div className={styles.card}>
+              <div className={styles.card} style={{ animationDelay: `${i * 0.2}s` }}>
                 <div className={styles.cardIcon}>{service.icon}</div>
                 <h3 className={styles.cardTitle}>{service.title}</h3>
                 <p className={styles.cardDesc}>{service.description}</p>

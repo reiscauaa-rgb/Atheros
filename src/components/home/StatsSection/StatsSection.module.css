@@ -97,3 +97,78 @@
   .grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
   .stat { padding: var(--space-6); }
 }
+
+/* ── Marquee ── */
+.marqueeContainer {
+  margin-top: var(--space-16);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.marquee {
+  display: flex;
+  gap: var(--space-6);
+  width: max-content;
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: var(--space-6);
+  animation: scroll 40s linear infinite;
+}
+
+.marqueeTrackReverse {
+  display: flex;
+  gap: var(--space-6);
+  animation: scrollReverse 45s linear infinite;
+}
+
+.brandPill {
+  padding: var(--space-5) var(--space-10);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  font-family: var(--font-heading, sans-serif);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-white, #fff);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pillNum {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-right: var(--space-4);
+  line-height: 1;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% - var(--space-6))); }
+}
+
+@keyframes scrollReverse {
+  0% { transform: translateX(calc(-100% - var(--space-6))); }
+  100% { transform: translateX(0); }
+}
+
+@media (max-width: 480px) {
+  .marqueeContainer { margin-top: var(--space-10); gap: var(--space-4); }
+  .marquee { gap: var(--space-4); }
+  .marqueeTrack, .marqueeTrackReverse { gap: var(--space-4); }
+  .brandPill { padding: var(--space-3) var(--space-6); font-size: 14px; }
+  .pillNum { font-size: 1.5rem; margin-right: var(--space-2); }
+}

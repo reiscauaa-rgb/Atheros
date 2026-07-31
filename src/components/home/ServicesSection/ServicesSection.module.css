@@ -2,6 +2,7 @@
   padding: var(--space-24) 0;
   background: linear-gradient(to bottom, #FFFFFF 0%, var(--color-bg-alt) 100%);
   position: relative;
+  z-index: 10;
   overflow: hidden;
 }
 
@@ -23,6 +24,7 @@
   margin-bottom: var(--space-4);
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  perspective: 500px;
 }
 
 .titleAccent {
@@ -48,6 +50,17 @@
   height: 100%;
 }
 
+@keyframes wavePulse {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: var(--shadow-card);
+  }
+  50% {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
 .card {
   background: var(--color-white);
   border-radius: var(--radius-lg);
@@ -61,6 +74,7 @@
   position: relative;
   overflow: hidden;
   height: 100%;
+  animation: wavePulse 3s ease-in-out infinite;
 }
 
 .card::after {
@@ -77,6 +91,7 @@
 }
 
 .card:hover {
+  animation-play-state: paused;
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
 }

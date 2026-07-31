@@ -108,10 +108,18 @@ const t = {
   },
 };
 
+import { useState } from 'react';
+
 export default function TestimonialsSection() {
   const { language } = useLanguage();
   const copy = t[language];
   const items = testimonials[language];
+  
+  // Duplicar a lista para o efeito de rolagem contínua
+  const marqueeItems = [...items, ...items];
+  
+  // Estado para controlar o pause/play no clique
+  const [isPaused, setIsPaused] = useState(false);
 
   return (
     <section className={styles.section}>
@@ -127,32 +135,38 @@ export default function TestimonialsSection() {
             <p className={styles.subtitle}>{copy.subtitle}</p>
           </div>
         </ScrollReveal>
+      </div>
 
-        <div className={styles.grid}>
-          {items.map((item, i) => (
-            <ScrollReveal key={item.name} variant="fadeUp" delay={i % 3 * 100}>
-              <div className={styles.card}>
-                {/* Stars */}
-                <div className={styles.stars} aria-label={`${item.rating} estrelas`}>
-                  {Array.from({ length: item.rating }).map((_, s) => (
-                    <svg key={s} width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  ))}
-                </div>
+      <div 
+        className={styles.marqueeContainer}
+        onClick={() => setIsPaused(!isPaused)}
+        role="button"
+        tabIndex={0}
+        aria-label="Play/Pause testimonials scroll"
+      >
+        <div className={`${styles.marqueeTrack} ${isPaused ? styles.paused : ''}`}>
+          {marqueeItems.map((item, i) => (
+            <div key={i} className={styles.card}>
+              {/* Stars */}
+              <div className={styles.stars} aria-label={`${item.rating} estrelas`}>
+                {Array.from({ length: item.rating }).map((_, s) => (
+                  <svg key={s} width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                ))}
+              </div>
 
-                <p className={styles.text}>"{item.text}"</p>
+              <p className={styles.text}>"{item.text}"</p>
 
-                {/* Author */}
-                <div className={styles.author}>
-                  <div className={styles.avatar}>{item.initials}</div>
-                  <div>
-                    <p className={styles.name}>{item.name}</p>
-                    <p className={styles.city}>{item.city}</p>
-                  </div>
+              {/* Author */}
+              <div className={styles.author}>
+                <div className={styles.avatar}>{item.initials}</div>
+                <div>
+                  <p className={styles.name}>{item.name}</p>
+                  <p className={styles.city}>{item.city}</p>
                 </div>
               </div>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
       </div>

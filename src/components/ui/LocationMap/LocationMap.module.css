@@ -1,0 +1,151 @@
+.container {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  perspective: 1000px;
+}
+
+.mapCard {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  transform-style: preserve-3d;
+  box-shadow: var(--shadow-sm);
+}
+
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.03), transparent, rgba(0, 0, 0, 0.08));
+}
+
+.mapContent {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mapBg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+}
+
+.svgMap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.roadMain { stroke: rgba(0, 0, 0, 0.25); }
+.roadSecondary { stroke: rgba(0, 0, 0, 0.15); }
+.roadTertiary { stroke: rgba(0, 0, 0, 0.05); }
+
+.building {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+}
+
+.pinContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.pinShadow {
+  filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.5));
+}
+
+.fadeBottom {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--color-white), transparent);
+  opacity: 0.6;
+}
+
+.gridPattern {
+  position: absolute;
+  inset: 0;
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-5);
+}
+
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.statusIndicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--radius-full);
+  padding: 4px 8px;
+  background-color: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(4px);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #34D399; /* emerald-400 */
+}
+
+.statusText {
+  color: var(--color-text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.bottomRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.locationTitle {
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.coordinates {
+  color: var(--color-text-muted);
+  font-family: monospace;
+  font-size: var(--font-size-xs);
+  margin-top: 2px;
+}
+
+.underline {
+  height: 1px;
+  background: linear-gradient(to right, rgba(52, 211, 153, 0.5), rgba(52, 211, 153, 0.1), transparent);
+}
+
+.clickHint {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-text-muted);
+  font-size: 10px;
+  white-space: nowrap;
+}

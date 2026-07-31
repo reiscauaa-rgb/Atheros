@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  min-height: 100dvh;
+  min-height: 85dvh;
   display: flex;
   align-items: center;
   padding-top: var(--header-height);
@@ -17,9 +17,9 @@
 .bgGradient {
   position: absolute;
   inset: 0;
-  background-image: url('/images/hero-bg.svg');
+  background-image: url('/images/hero-new.png');
   background-size: cover;
-  background-position: center;
+  background-position: right center;
   background-repeat: no-repeat;
   background-color: var(--color-primary-dark); /* Fundo de segurança escuro caso a imagem não preencha a tela toda, para os textos brancos ficarem visíveis */
 }

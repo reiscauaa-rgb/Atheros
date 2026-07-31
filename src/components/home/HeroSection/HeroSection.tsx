@@ -1,8 +1,16 @@
 'use client';
 
+import { useRef } from 'react';
 import Link from 'next/link';
 import styles from './HeroSection.module.css';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const t = {
   pt: {
@@ -36,9 +44,20 @@ const t = {
 export default function HeroSection() {
   const { language } = useLanguage();
   const copy = t[language];
+  const heroRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: heroRef.current,
+      start: 'bottom bottom',
+      pin: true,
+      pinSpacing: false,
+      markers: false,
+    });
+  }, { scope: heroRef });
 
   return (
-    <section className={styles.hero} aria-label="Hero">
+    <section ref={heroRef} className={styles.hero} aria-label="Hero">
       {/* Background image */}
       <div className={styles.bg} aria-hidden>
         <div className={styles.bgGradient} />
@@ -97,15 +116,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right — Photo Container */}
-        <div className={styles.visual} aria-hidden>
-          <div className={styles.photoContainer}>
-            {/* Espaço reservado para a foto. Quando tiver a foto, basta usar a tag <Image> aqui */}
-            <div className={styles.photoPlaceholder}>
-              <span>{language === 'pt' ? 'Espaço para Foto' : 'Photo Space'}</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Scroll indicator */}

@@ -1,0 +1,156 @@
+/* LinearCard.module.css */
+.container {
+  display: flex;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+.trigger {
+  border-radius: 12px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  transition: background 0.2s, transform 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.trigger:hover {
+  background: var(--color-bg-alt);
+}
+
+.triggerImage {
+  height: 24rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.triggerFooter {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.triggerTitle {
+  color: var(--color-text);
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+}
+
+.triggerBtn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 9999px;
+  transition: background 0.2s;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.triggerBtn:hover {
+  background: var(--color-primary-dark);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  height: 100%;
+  z-index: 50;
+  width: 100%;
+  background: rgba(13, 26, 77, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.dialogContainer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  pointer-events: none;
+}
+
+.content {
+  border-radius: 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  pointer-events: auto;
+  box-shadow: var(--shadow-lg);
+}
+
+.contentImage {
+  height: 40%;
+  object-fit: contain;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.contentBody {
+  padding: 2rem;
+}
+
+.contentTitle {
+  font-size: 2.5rem;
+  color: var(--color-text);
+  font-weight: 700;
+  font-family: var(--font-heading);
+  margin-bottom: 1rem;
+}
+
+.contentDesc {
+  margin-top: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  color: var(--color-white);
+  background: var(--color-primary);
+  padding: 0.5rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.closeBtn:hover {
+  background: var(--color-primary-dark);
+}
+
+.overflowHidden {
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+}

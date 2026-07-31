@@ -4,6 +4,7 @@ import ScrollReveal from '@/components/ScrollReveal/ScrollReveal';
 import styles from './AboutSection.module.css';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import Link from 'next/link';
+import { LocationMap } from '@/components/ui/LocationMap/LocationMap';
 
 const t = {
   pt: {
@@ -42,38 +43,11 @@ export default function AboutSection() {
         <div className={styles.inner}>
           {/* Left — Visual */}
           <ScrollReveal variant="fadeLeft" className={styles.visualWrap}>
-            <div className={styles.visual}>
-              {/* Big stat */}
-              <div className={styles.mainStat}>
-                <span className={styles.mainStatNum}>20+</span>
-                <span className={styles.mainStatLabel}>
-                  {language === 'pt' ? 'anos de mercado' : 'years in business'}
-                </span>
-              </div>
-
-              {/* Decorative grid */}
-              <div className={styles.visualGrid} aria-hidden>
-                <div className={`${styles.visualCell} ${styles.c1}`} />
-                <div className={`${styles.visualCell} ${styles.c2}`} />
-                <div className={`${styles.visualCell} ${styles.c3}`} />
-                <div className={`${styles.visualCell} ${styles.c4}`} />
-                <div className={`${styles.visualCell} ${styles.c5}`} />
-                <div className={`${styles.visualCell} ${styles.c6}`} />
-              </div>
-
-              {/* Location badge */}
-              <div className={styles.locationBadge}>
-                <span>📍</span>
-                <span>Stoughton, MA · EUA</span>
-              </div>
-
-              {/* Experience badge */}
-              <div className={styles.expBadge}>
-                <span className={styles.expBadgeNum}>30</span>
-                <span className={styles.expBadgeText}>
-                  {language === 'pt' ? 'anos nos EUA' : 'years in the USA'}
-                </span>
-              </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: '400px' }}>
+              <LocationMap 
+                location="Stoughton, MA" 
+                coordinates="42.1251° N, 71.1023° W" 
+              />
             </div>
           </ScrollReveal>
 

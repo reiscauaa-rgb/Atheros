@@ -1,47 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+// Removed unused hooks
 import ScrollReveal from '@/components/ScrollReveal/ScrollReveal';
 import styles from './StatsSection.module.css';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-function useCountUp(target: number, duration = 2000, start = false) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    let startTime: number | null = null;
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(ease * target));
-      if (progress < 1) requestAnimationFrame(step);
-      else setCount(target);
-    };
-    requestAnimationFrame(step);
-  }, [target, duration, start]);
-  return count;
-}
-
-function StatItem({ num, suffix, label, delay }: { num: number; suffix: string; label: string; delay: number }) {
-  const [started, setStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const count = useCountUp(num, 2000, started);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setStarted(true); observer.disconnect(); } }, { threshold: 0.5 });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+function StatPill({ num, suffix, label }: { num: number; suffix: string; label: string }) {
   return (
-    <div ref={ref} className={styles.stat} style={{ animationDelay: `${delay}ms` }}>
-      <div className={styles.statNum}>
-        {count}{suffix}
-      </div>
-      <div className={styles.statLabel}>{label}</div>
+    <div className={styles.brandPill}>
+      <span className={styles.pillNum}>{num}{suffix}</span> {label}
     </div>
   );
 }
@@ -79,6 +46,8 @@ export default function StatsSection() {
   const copy = t[language];
   const items = stats[language];
 
+  const marqueeItems = [...items, ...items, ...items, ...items];
+
   return (
     <section className={styles.section}>
       <div className={styles.bgPattern} aria-hidden />
@@ -95,12 +64,33 @@ export default function StatsSection() {
           </div>
         </ScrollReveal>
 
-        <div className={styles.grid}>
-          {items.map((item, i) => (
-            <ScrollReveal key={item.label} variant="zoomIn" delay={i * 100}>
-              <StatItem num={item.num} suffix={item.suffix} label={item.label} delay={i * 100} />
-            </ScrollReveal>
-          ))}
+        <div className={styles.marqueeContainer}>
+          {/* Row 1 */}
+          <div className={styles.marquee}>
+            <div className={styles.marqueeTrack}>
+              {marqueeItems.map((item, i) => (
+                <StatPill key={`r1-${i}`} num={item.num} suffix={item.suffix} label={item.label} />
+              ))}
+            </div>
+            <div className={styles.marqueeTrack} aria-hidden="true">
+              {marqueeItems.map((item, i) => (
+                <StatPill key={`r1-hidden-${i}`} num={item.num} suffix={item.suffix} label={item.label} />
+              ))}
+            </div>
+          </div>
+          {/* Row 2 */}
+          <div className={styles.marquee}>
+            <div className={styles.marqueeTrackReverse}>
+              {marqueeItems.map((item, i) => (
+                <StatPill key={`r2-${i}`} num={item.num} suffix={item.suffix} label={item.label} />
+              ))}
+            </div>
+            <div className={styles.marqueeTrackReverse} aria-hidden="true">
+              {marqueeItems.map((item, i) => (
+                <StatPill key={`r2-hidden-${i}`} num={item.num} suffix={item.suffix} label={item.label} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
