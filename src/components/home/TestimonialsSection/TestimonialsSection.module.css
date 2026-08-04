@@ -1,8 +1,14 @@
+/* ═══════════════════════════════════════════════
+   TESTIMONIALS SECTION — 3-D Vertical Marquee
+   ═══════════════════════════════════════════════ */
+
 .section {
   padding: var(--space-24) 0;
   background: var(--color-white);
+  overflow: hidden;
 }
 
+/* ── Header ── */
 .header {
   text-align: center;
   max-width: 600px;
@@ -25,65 +31,96 @@
   line-height: 1.7;
 }
 
-.marqueeContainer {
-  display: flex;
-  overflow: hidden;
-  position: relative;
+/* ── 3-D scene ── */
+.marquee3dWrapper {
   width: 100%;
-  padding: var(--space-4) 0;
-  cursor: pointer;
-  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-}
-
-.marqueeTrack {
   display: flex;
-  gap: var(--space-6);
-  width: max-content;
-  animation: scrollMarquee 40s linear infinite;
-  will-change: transform;
+  justify-content: center;
+  overflow: hidden;
+  /* Limit viewport height */
+  max-height: 480px;
 }
 
-.marqueeTrack.paused {
+.marquee3dInner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+
+  /* 3-D tilt – same transform as the demo */
+  transform:
+    translateX(-80px)
+    translateY(0px)
+    translateZ(-80px)
+    rotateX(18deg)
+    rotateY(-8deg)
+    rotateZ(18deg);
+  transform-style: preserve-3d;
+}
+
+/* ── Vertical column ── */
+.vMarqueeWrap {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 480px;
+  padding: 0.5rem 0;
+}
+
+/* Pause all inner tracks when hovering any column */
+.vMarqueeWrap.pauseOnHover:hover .vMarqueeTrack {
   animation-play-state: paused;
 }
 
-@keyframes scrollMarquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(calc(-50% - (var(--space-6) / 2))); }
+.vMarqueeTrack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* continuous upward scroll */
+  animation: scrollUp 40s linear infinite;
+  will-change: transform;
 }
 
+.vMarqueeTrack.vReverse {
+  animation-direction: reverse;
+}
+
+@keyframes scrollUp {
+  from { transform: translateY(0); }
+  to   { transform: translateY(calc(-100% / 3)); }
+}
+
+/* ── Card ── */
 .card {
-  width: 380px;
+  width: 280px;
   flex-shrink: 0;
   background: var(--color-bg-alt);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-8);
+  padding: var(--space-5);
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  gap: var(--space-3);
   position: relative;
+  transition: box-shadow var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 .card::before {
   content: '\201C';
   position: absolute;
-  top: var(--space-4);
-  right: var(--space-6);
+  top: var(--space-3);
+  right: var(--space-4);
   font-family: Georgia, serif;
-  font-size: 5rem;
+  font-size: 4rem;
   color: var(--color-accent);
-  opacity: 0.2;
+  opacity: 0.18;
   line-height: 1;
   pointer-events: none;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: transparent;
 }
 
 .stars {
@@ -93,24 +130,23 @@
 }
 
 .text {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-text);
-  line-height: 1.8;
-  flex: 1;
+  line-height: 1.75;
   font-style: italic;
 }
 
 .author {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding-top: var(--space-4);
+  gap: var(--space-2);
+  padding-top: var(--space-3);
   border-top: 1px solid var(--color-border);
 }
 
 .avatar {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-full);
   background: var(--color-primary);
   color: var(--color-white);
@@ -118,7 +154,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -132,7 +168,65 @@
 .city {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
-  margin-top: 2px;
+  margin-top: 1px;
+}
+
+/* ── Gradient fade edges ── */
+.fadeEdge {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fadeTop {
+  inset-inline: 0;
+  top: 0;
+  height: 25%;
+  background: linear-gradient(to bottom, var(--color-white), transparent);
+}
+
+.fadeBottom {
+  inset-inline: 0;
+  bottom: 0;
+  height: 25%;
+  background: linear-gradient(to top, var(--color-white), transparent);
+}
+
+.fadeLeft {
+  inset-block: 0;
+  left: 0;
+  width: 20%;
+  background: linear-gradient(to right, var(--color-white), transparent);
+}
+
+.fadeRight {
+  inset-block: 0;
+  right: 0;
+  width: 20%;
+  background: linear-gradient(to left, var(--color-white), transparent);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .marquee3dInner {
+    gap: 0.75rem;
+    transform:
+      translateX(-40px)
+      translateZ(-40px)
+      rotateX(14deg)
+      rotateY(-6deg)
+      rotateZ(14deg);
+  }
+
+  /* Show only 2 columns on mobile */
+  .vMarqueeWrap:nth-child(3),
+  .vMarqueeWrap:nth-child(4) {
+    display: none;
+  }
+
+  .card { width: 220px; }
+  .marquee3dWrapper { max-height: 360px; }
+  .vMarqueeWrap { height: 360px; }
 }
 
 @media (max-width: 640px) {

@@ -1,0 +1,34 @@
+/* ContainerScroll — global styles (not a CSS Module) */
+
+.scrollHeader {
+  max-width: 64rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.scrollCard {
+  max-width: 64rem;
+  margin: -3rem auto 0;
+  height: clamp(22rem, 35vw, 40rem);
+  width: 100%;
+  border: 4px solid #4a4a4a;
+  padding: 8px;
+  background: #222;
+  border-radius: 30px;
+}
+
+.scrollCardInner {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #111;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .scrollCard {
+    height: clamp(18rem, 60vw, 26rem);
+    border-radius: 20px;
+  }
+}

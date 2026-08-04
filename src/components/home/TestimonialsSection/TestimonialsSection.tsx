@@ -1,9 +1,11 @@
 'use client';
 
+import { useRef, useMemo } from 'react';
 import ScrollReveal from '@/components/ScrollReveal/ScrollReveal';
 import styles from './TestimonialsSection.module.css';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
+/* ─── Data ─────────────────────────────────────────────── */
 const testimonials = {
   pt: [
     {
@@ -108,18 +110,62 @@ const t = {
   },
 };
 
-import { useState } from 'react';
+/* ─── Card ─────────────────────────────────────────────── */
+function TestimonialCard({ name, city, initials, rating, text }: (typeof testimonials.pt)[number]) {
+  return (
+    <div className={styles.card}>
+      <div className={styles.stars} aria-label={`${rating} estrelas`}>
+        {Array.from({ length: rating }).map((_, s) => (
+          <svg key={s} width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        ))}
+      </div>
+      <p className={styles.text}>"{text}"</p>
+      <div className={styles.author}>
+        <div className={styles.avatar}>{initials}</div>
+        <div>
+          <p className={styles.name}>{name}</p>
+          <p className={styles.city}>{city}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
+/* ─── Vertical Marquee column ───────────────────────────── */
+function VerticalMarquee({
+  items,
+  reverse = false,
+  pauseOnHover = true,
+}: {
+  items: (typeof testimonials.pt);
+  reverse?: boolean;
+  pauseOnHover?: boolean;
+}) {
+  // Repeat 3× to ensure seamless loop
+  const repeated = useMemo(() => [...items, ...items, ...items], [items]);
+
+  return (
+    <div
+      className={`${styles.vMarqueeWrap} ${pauseOnHover ? styles.pauseOnHover : ''}`}
+    >
+      <div
+        className={`${styles.vMarqueeTrack} ${reverse ? styles.vReverse : ''}`}
+      >
+        {repeated.map((item, i) => (
+          <TestimonialCard key={i} {...item} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Section ───────────────────────────────────────────── */
 export default function TestimonialsSection() {
   const { language } = useLanguage();
   const copy = t[language];
   const items = testimonials[language];
-  
-  // Duplicar a lista para o efeito de rolagem contínua
-  const marqueeItems = [...items, ...items];
-  
-  // Estado para controlar o pause/play no clique
-  const [isPaused, setIsPaused] = useState(false);
 
   return (
     <section className={styles.section}>
@@ -137,37 +183,19 @@ export default function TestimonialsSection() {
         </ScrollReveal>
       </div>
 
-      <div 
-        className={styles.marqueeContainer}
-        onClick={() => setIsPaused(!isPaused)}
-        role="button"
-        tabIndex={0}
-        aria-label="Play/Pause testimonials scroll"
-      >
-        <div className={`${styles.marqueeTrack} ${isPaused ? styles.paused : ''}`}>
-          {marqueeItems.map((item, i) => (
-            <div key={i} className={styles.card}>
-              {/* Stars */}
-              <div className={styles.stars} aria-label={`${item.rating} estrelas`}>
-                {Array.from({ length: item.rating }).map((_, s) => (
-                  <svg key={s} width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                ))}
-              </div>
+      {/* 3-D vertical marquee */}
+      <div className={styles.marquee3dWrapper}>
+        <div className={styles.marquee3dInner}>
+          <VerticalMarquee items={items} />
+          <VerticalMarquee items={items} reverse />
+          <VerticalMarquee items={items} />
+          <VerticalMarquee items={items} reverse />
 
-              <p className={styles.text}>"{item.text}"</p>
-
-              {/* Author */}
-              <div className={styles.author}>
-                <div className={styles.avatar}>{item.initials}</div>
-                <div>
-                  <p className={styles.name}>{item.name}</p>
-                  <p className={styles.city}>{item.city}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+          {/* Fade-out gradients */}
+          <div className={`${styles.fadeEdge} ${styles.fadeTop}`} />
+          <div className={`${styles.fadeEdge} ${styles.fadeBottom}`} />
+          <div className={`${styles.fadeEdge} ${styles.fadeLeft}`} />
+          <div className={`${styles.fadeEdge} ${styles.fadeRight}`} />
         </div>
       </div>
     </section>
