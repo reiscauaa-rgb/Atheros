@@ -1,5 +1,10 @@
 /* ContainerScroll — global styles (not a CSS Module) */
 
+.containerScroll {
+  position: relative;
+  z-index: 1;
+}
+
 .scrollHeader {
   max-width: 64rem;
   margin: 0 auto;
