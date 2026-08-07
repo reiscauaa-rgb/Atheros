@@ -99,7 +99,7 @@ export default function Footer() {
           <div className={styles.brand}>
             <Link href="/">
               <Image
-                src="/images/logo-white.png"
+                src="/images/Logo.png"
                 alt="Atheros"
                 width={130}
                 height={46}

@@ -158,71 +158,186 @@
   margin-bottom: var(--space-10);
 }
 
-.mvvGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
-  margin-bottom: var(--space-8);
+/* ── MVV Bento Grid ── */
+.mvvHeader {
+  text-align: center;
+  margin-bottom: var(--space-10);
 }
 
-.mvvCard {
-  background: var(--color-primary);
-  border-radius: var(--radius-lg);
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.bentoCard {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
   padding: var(--space-8);
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-5);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
 
-.mvvIcon { font-size: 2rem; }
+.bentoCard:hover {
+  box-shadow: 0 12px 40px rgba(14, 38, 107, 0.1);
+  transform: translateY(-3px);
+}
 
-.mvvCardTitle {
+/* ── Dynamic Sizes and Highlights ── */
+.cardMission {
+  grid-column: span 4;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  min-height: 280px;
+}
+
+.cardVision {
+  grid-column: span 2;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  min-height: 280px;
+}
+
+.cardValueSmall { grid-column: span 2; }
+.cardValueLarge { grid-column: span 6; }
+
+/* ── Background SVGs ── */
+.cardMissionBg {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 300px;
+  height: 300px;
+  color: var(--color-white);
+  pointer-events: none;
+}
+
+.cardVisionBg {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 150px;
+  height: 150px;
+  color: var(--color-primary);
+  pointer-events: none;
+}
+
+.cardContentWrap {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: var(--space-6);
+}
+
+.cardInner2colValue {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ── Custom Text Colors ── */
+.cardBodyMission { display: flex; flex-direction: column; gap: var(--space-2); }
+.cardTitleMission {
   font-family: var(--font-heading);
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: 700;
-  color: var(--color-accent);
-  text-transform: uppercase;
+  color: var(--color-white);
 }
-
-.mvvText {
-  font-size: var(--font-size-base);
-  color: rgba(255,255,255,0.8);
+.cardDescMission {
+  font-size: var(--font-size-md);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.7;
 }
 
-.valuesGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-}
-
-.valueCard {
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
-}
-
-.valueCard:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-
-.valueIcon { font-size: 1.75rem; }
-
-.valueTitle {
+.cardTitleVision {
   font-family: var(--font-heading);
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  color: var(--color-primary);
-  text-transform: uppercase;
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+.cardDescVision {
+  font-size: var(--font-size-md);
+  color: rgba(14, 38, 107, 0.85);
+  line-height: 1.7;
 }
 
-.valueText {
+/* ── Icons ── */
+.cardIconRing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  background: var(--color-bg-alt);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cardIconRing::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  opacity: 0.5;
+}
+
+.cardIconRingMission,
+.cardIconRingVision {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cardIconRingMission {
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+}
+.cardIconRingMission::before {
+  content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); opacity: 0.5;
+}
+
+.cardIconRingVision {
+  color: var(--color-primary);
+  border: 1px solid rgba(14, 38, 107, 0.3);
+  background: rgba(255, 255, 255, 0.5);
+}
+.cardIconRingVision::before {
+  content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid rgba(14,38,107,0.2); opacity: 0.5;
+}
+
+.cardBody { display: flex; flex-direction: column; gap: var(--space-2); }
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.cardDesc {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* ── Responsive ── */
@@ -230,10 +345,25 @@
   .statsGrid { grid-template-columns: repeat(2, 1fr); }
   .storyGrid { grid-template-columns: 1fr; }
   .storyVisual { display: none; }
-  .valuesGrid { grid-template-columns: repeat(2, 1fr); }
+  
+  .cardMission { grid-column: span 6; }
+  .cardVision  { grid-column: span 6; }
+  .cardValueSmall { grid-column: span 3; }
 }
 
-@media (max-width: 640px) {
-  .mvvGrid { grid-template-columns: 1fr; }
-  .valuesGrid { grid-template-columns: 1fr 1fr; }
+@media (max-width: 768px) {
+  .bentoGrid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .cardMission { grid-column: span 2; }
+  .cardVision  { grid-column: span 2; }
+  .cardValueSmall { grid-column: span 2; }
+  .cardValueLarge { grid-column: span 2; }
 }
+
+@media (max-width: 480px) {
+  .bentoGrid { grid-template-columns: 1fr; }
+  .cardMission,
+  .cardVision,
+  .cardValueSmall,
+  .cardValueLarge { grid-column: span 1; }
+}
+

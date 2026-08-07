@@ -61,7 +61,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className={styles.logo} onClick={closeMenu}>
             <Image
-              src="/images/logo.png"
+              src="/images/Logo.png"
               alt="Atheros — Assessoria Documental"
               width={420}
               height={150}
