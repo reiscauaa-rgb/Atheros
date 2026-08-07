@@ -47,8 +47,6 @@
 .char {
   display: inline-block;
   transform-style: preserve-3d;
-  backface-visibility: hidden;
-  will-change: transform, opacity;
 }
 
 .subtitle {

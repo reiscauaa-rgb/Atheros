@@ -64,20 +64,35 @@ export default function ServicesSection() {
     const chars = titleRef.current.querySelectorAll('.char');
     if (!chars.length) return;
 
+    // Start hidden
     gsap.set(chars, { rotateX: -90, opacity: 0 });
 
-    gsap.to(chars, {
-      rotateX: 0,
-      opacity: 1,
-      stagger: 0.03,
-      duration: 0.6,
-      ease: 'back.out(1.7)',
-      scrollTrigger: {
-        trigger: titleRef.current,
-        start: 'top 85%',
-        end: 'top 20%',
-        toggleActions: 'play reverse play reverse',
-      },
+    function playAnim() {
+      gsap.fromTo(
+        chars,
+        { rotateX: -90, opacity: 0 },
+        {
+          rotateX: 0,
+          opacity: 1,
+          stagger: 0.03,
+          duration: 0.7,
+          ease: 'power4.out',
+        }
+      );
+    }
+
+    function hideChars() {
+      gsap.set(chars, { rotateX: -90, opacity: 0 });
+    }
+
+    ScrollTrigger.create({
+      trigger: titleRef.current,
+      start: 'top 85%',
+      end: 'bottom 15%',
+      onEnter: playAnim,
+      onEnterBack: playAnim,
+      onLeave: hideChars,
+      onLeaveBack: hideChars,
     });
   }, { dependencies: [copy.title] });
 
