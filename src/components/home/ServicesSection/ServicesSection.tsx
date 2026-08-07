@@ -65,24 +65,24 @@ export default function ServicesSection() {
     if (!chars.length) return;
 
     // Start hidden
-    gsap.set(chars, { rotateX: -90, opacity: 0 });
+    gsap.set(chars, { x: 150, opacity: 0 });
 
     function playAnim() {
       gsap.fromTo(
         chars,
-        { rotateX: -90, opacity: 0 },
+        { x: 150, opacity: 0 },
         {
-          rotateX: 0,
+          x: 0,
           opacity: 1,
-          stagger: 0.03,
           duration: 0.7,
           ease: 'power4.out',
+          stagger: 0.04,
         }
       );
     }
 
     function hideChars() {
-      gsap.set(chars, { rotateX: -90, opacity: 0 });
+      gsap.set(chars, { x: 150, opacity: 0 });
     }
 
     ScrollTrigger.create({

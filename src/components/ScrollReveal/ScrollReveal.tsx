@@ -39,7 +39,6 @@ export default function ScrollReveal({
     el.style.opacity = '0';
     el.style.transform = transforms[variant] || transforms.fadeUp;
     el.style.transition = `opacity ${duration}ms cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16,1,0.3,1) ${delay}ms`;
-    el.style.willChange = 'opacity, transform';
 
     const observer = new IntersectionObserver(
       ([entry]) => {
