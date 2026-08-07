@@ -5,13 +5,7 @@ import Link from 'next/link';
 import styles from './HeroSection.module.css';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { ContainerScroll } from '@/components/ui/ContainerScroll/ContainerScroll';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
 
 const t = {
   pt: {
@@ -47,15 +41,7 @@ export default function HeroSection() {
   const copy = t[language];
   const heroRef = useRef<HTMLElement>(null);
 
-  useGSAP(() => {
-    ScrollTrigger.create({
-      trigger: heroRef.current,
-      start: 'bottom bottom',
-      pin: true,
-      pinSpacing: false,
-      markers: false,
-    });
-  }, { scope: heroRef });
+
 
   return (
     <section ref={heroRef} className={styles.hero} aria-label="Hero">

@@ -52,7 +52,7 @@ export const ScrollHeader = ({
   titleComponent: React.ReactNode;
 }) => (
   <motion.div
-    style={{ translateY: translate }}
+    style={{ translateY: translate, willChange: 'transform' }}
     className="scrollHeader"
   >
     {titleComponent}
@@ -74,6 +74,7 @@ export const ScrollCard = ({
       rotateX: rotate,
       scale,
       boxShadow: '0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003',
+      willChange: 'transform',
     }}
     className="scrollCard"
   >

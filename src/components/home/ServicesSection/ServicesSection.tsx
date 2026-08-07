@@ -120,7 +120,6 @@ export default function ServicesSection() {
                       {wordChars}
                     </span>
                   ))}
-                  {li < titleWords.length - 1 && <br />}
                 </span>
               ))}
             </h2>

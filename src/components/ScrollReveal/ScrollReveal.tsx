@@ -36,6 +36,7 @@ export default function ScrollReveal({
     const el = ref.current;
     if (!el) return;
 
+    el.style.willChange = 'opacity, transform';
     el.style.opacity = '0';
     el.style.transform = transforms[variant] || transforms.fadeUp;
     el.style.transition = `opacity ${duration}ms cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16,1,0.3,1) ${delay}ms`;
