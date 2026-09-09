@@ -16,8 +16,10 @@ const t = {
     service: 'Serviço de interesse',
     serviceOptions: [
       'Documentação Consular',
-      'Procuração',
-      'Certificado Digital (e-CPF/e-CNPJ)',
+      'Vistos',
+      'Legalização e Traduções',
+      'Procurações Públicas',
+      'e-Notariado',
       'Outro',
     ],
     message: 'Mensagem (opcional)',
@@ -45,8 +47,10 @@ const t = {
     service: 'Service of interest',
     serviceOptions: [
       'Consular Documentation',
-      'Power of Attorney',
-      'Digital Certificate (e-CPF/e-CNPJ)',
+      'Visas',
+      'Legalization and Translations',
+      'Public Powers of Attorney',
+      'e-Notariado',
       'Other',
     ],
     message: 'Message (optional)',
@@ -84,7 +88,7 @@ const contactInfo = {
         </svg>
       ),
       label: 'Endereço',
-      value: '2 Canton St, unit 115 — Stoughton, MA 02072',
+      value: '2 Canton St, unit 115 Stoughton, MA 02072',
     },
     {
       icon: (
@@ -125,7 +129,7 @@ const contactInfo = {
         </svg>
       ),
       label: 'Address',
-      value: '2 Canton St, unit 115 — Stoughton, MA 02072',
+      value: '2 Canton St, unit 115 Stoughton, MA 02072',
     },
     {
       icon: (
@@ -186,7 +190,7 @@ export default function ContatoClientPage() {
             <span className={`${styles.plus} ${styles.plusBL}`}>+</span>
             <span className={`${styles.plus} ${styles.plusBR}`}>+</span>
 
-            {/* Left panel — info */}
+            {/* Left panel info */}
             <div className={styles.infoPanel}>
               <p className={styles.infoDescription}>{copy.description}</p>
 
@@ -219,7 +223,7 @@ export default function ContatoClientPage() {
               </div>
             </div>
 
-            {/* Right panel — form */}
+            {/* Right panel form */}
             <div className={styles.formPanel}>
               {status === 'success' ? (
                 <div className={styles.successMsg}>

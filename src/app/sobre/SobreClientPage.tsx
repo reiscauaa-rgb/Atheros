@@ -9,10 +9,10 @@ const t = {
   pt: {
     eyebrow: 'Nossa história',
     heroTitle: 'Brasileiras que\nentendem você',
-    heroSub: 'Com mais de 20 anos de experiência e 30 anos morando nos EUA, somos a parceira que a comunidade brasileira merece.',
+    heroSub: 'Com mais de 16 anos de experiência e 30 anos morando nos EUA, somos a parceira que a comunidade brasileira merece.',
     storyTitle: 'Como tudo começou',
     story: [
-      'A Atheros nasceu da necessidade real vivida pelas próprias fundadoras: mulheres brasileiras que chegaram aos Estados Unidos há mais de 30 anos e que, como tantos outros compatriotas, se depararam com as dificuldades da burocracia consular — sem ter quem as orientasse de forma correta e acessível.',
+      'A Atheros nasceu da necessidade real vivida pelas próprias fundadoras: mulheres brasileiras que chegaram aos Estados Unidos há mais de 30 anos e que, como tantos outros compatriotas, se depararam com as dificuldades da burocracia consular sem ter quem as orientasse de forma correta e acessível.',
       'Depois de anos ajudando informalmente amigos e conhecidos, formalizaram o negócio com um propósito claro: ser a assessora documental que elas gostariam de ter encontrado quando chegaram ao país.',
       'Hoje, com mais de 2.000 clientes atendidos e uma reputação construída sobre confiança, ética e excelência, a Atheros é referência para brasileiros em todo o território americano.',
     ],
@@ -29,10 +29,10 @@ const t = {
   en: {
     eyebrow: 'Our story',
     heroTitle: 'Brazilian women who\nunderstand you',
-    heroSub: 'With over 20 years of experience and 30 years living in the USA, we are the partner the Brazilian community deserves.',
+    heroSub: 'With over 16 years of experience and 30 years living in the USA, we are the partner the Brazilian community deserves.',
     storyTitle: 'How it all started',
     story: [
-      'Atheros was born out of the real need experienced by the founders themselves: Brazilian women who arrived in the United States over 30 years ago and, like so many other compatriots, faced the difficulties of consular bureaucracy — without anyone to guide them correctly and accessibly.',
+      'Atheros was born out of the real need experienced by the founders themselves: Brazilian women who arrived in the United States over 30 years ago and, like so many other compatriots, faced the difficulties of consular bureaucracy without anyone to guide them correctly and accessibly.',
       'After years of informally helping friends and acquaintances, they formalized the business with a clear purpose: to be the document advisory they wished they had found when they arrived in the country.',
       'Today, with over 2,000 clients served and a reputation built on trust, ethics and excellence, Atheros is the reference for Brazilians throughout the United States.',
     ],
@@ -73,7 +73,7 @@ export default function SobreClientPage() {
         <div className="container">
           <div className={styles.statsGrid}>
             {[
-              { num: '20+', label: language === 'pt' ? 'anos de mercado' : 'years in business' },
+              { num: '16+', label: language === 'pt' ? 'anos de mercado' : 'years in business' },
               { num: '30+', label: language === 'pt' ? 'anos nos EUA' : 'years in the USA' },
               { num: '2k+', label: language === 'pt' ? 'clientes atendidos' : 'clients served' },
               { num: '100%', label: language === 'pt' ? 'online' : 'online' },
@@ -91,14 +91,6 @@ export default function SobreClientPage() {
       <section className={styles.story}>
         <div className="container">
           <div className={styles.storyGrid}>
-            <ScrollReveal variant="fadeLeft">
-              <div className={styles.storyVisual}>
-                <div className={styles.storyCircle}>
-                  <span className={styles.storyYear}>2004</span>
-                  <span className={styles.storyYearLabel}>{language === 'pt' ? 'Fundação' : 'Founded'}</span>
-                </div>
-              </div>
-            </ScrollReveal>
             <ScrollReveal variant="fadeRight">
               <div className={styles.storyContent}>
                 <h2 className={styles.storyTitle}>{copy.storyTitle}</h2>
@@ -109,7 +101,7 @@ export default function SobreClientPage() {
         </div>
       </section>
 
-      {/* Mission / Vision / Values — Bento Grid */}
+      {/* Mission / Vision / Values Bento Grid */}
       <section className={styles.mvv}>
         <div className="container">
           <ScrollReveal variant="fadeUp">
@@ -118,7 +110,7 @@ export default function SobreClientPage() {
 
           <div className={styles.bentoGrid}>
 
-            {/* Missão — card largo com highlight */}
+            {/* Missão card largo com highlight */}
             <ScrollReveal variant="fadeUp" delay={0} className={`${styles.bentoCard} ${styles.cardMission}`}>
               <div className={styles.cardMissionBg}>
                 <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +133,7 @@ export default function SobreClientPage() {
               </div>
             </ScrollReveal>
 
-            {/* Visão — card alto em destaque */}
+            {/* Visão card alto em destaque */}
             <ScrollReveal variant="fadeUp" delay={80} className={`${styles.bentoCard} ${styles.cardVision}`}>
               <div className={styles.cardVisionBg}>
                 <svg viewBox="0 0 200 200" fill="none">

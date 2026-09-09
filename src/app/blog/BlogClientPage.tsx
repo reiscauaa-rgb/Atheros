@@ -66,7 +66,7 @@ const t = {
     search: 'Pesquisar artigos...',
     all: 'Todos',
     results: (n: number, page: number, total: number) =>
-      n === 0 ? 'Nenhum artigo encontrado.' : `${n} artigo${n !== 1 ? 's' : ''} — página ${page} de ${total}`,
+      n === 0 ? 'Nenhum artigo encontrado.' : `${n} artigo${n !== 1 ? 's' : ''} página ${page} de ${total}`,
     empty: 'Nenhum resultado para',
     reset: 'Ver todos os artigos',
     ctaTitle: 'Tem dúvidas sobre documentação?',
@@ -78,7 +78,7 @@ const t = {
     search: 'Search articles...',
     all: 'All',
     results: (n: number, page: number, total: number) =>
-      n === 0 ? 'No articles found.' : `${n} article${n !== 1 ? 's' : ''} — page ${page} of ${total}`,
+      n === 0 ? 'No articles found.' : `${n} article${n !== 1 ? 's' : ''} page ${page} of ${total}`,
     empty: 'No results for',
     reset: 'See all articles',
     ctaTitle: 'Have questions about documentation?',

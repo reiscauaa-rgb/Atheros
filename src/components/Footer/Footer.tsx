@@ -7,12 +7,14 @@ import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const t = {
   pt: {
-    tagline: 'Assessoria documental para brasileiros nos EUA há mais de 20 anos.',
+    tagline: 'Assessoria documental para brasileiros nos EUA há mais de 16 anos.',
     services: 'Serviços',
     servicesList: [
       { label: 'Documentação Consular', href: '/servicos#consular' },
-      { label: 'Procurações', href: '/servicos#procuracoes' },
-      { label: 'Certificado Digital', href: '/servicos#certificado' },
+      { label: 'Vistos', href: '/servicos#vistos' },
+      { label: 'Legalização e Traduções', href: '/servicos#legalizacao' },
+      { label: 'Procurações Públicas', href: '/servicos#procuracoes' },
+      { label: 'e-Notariado', href: '/servicos#enotariado' },
     ],
     links: 'Links Úteis',
     linksList: [
@@ -31,12 +33,14 @@ const t = {
     cta: 'Análise Gratuita',
   },
   en: {
-    tagline: 'Document services for Brazilians in the USA for over 20 years.',
+    tagline: 'Document services for Brazilians in the USA for over 16 years.',
     services: 'Services',
     servicesList: [
       { label: 'Consular Documentation', href: '/servicos#consular' },
-      { label: 'Powers of Attorney', href: '/servicos#procuracoes' },
-      { label: 'Digital Certificate', href: '/servicos#certificado' },
+      { label: 'Visas', href: '/servicos#vistos' },
+      { label: 'Legalization and Translations', href: '/servicos#legalizacao' },
+      { label: 'Public Powers of Attorney', href: '/servicos#procuracoes' },
+      { label: 'e-Notariado', href: '/servicos#enotariado' },
     ],
     links: 'Quick Links',
     linksList: [

@@ -47,6 +47,10 @@ export default function ScrollReveal({
           el.style.opacity = '1';
           el.style.transform = 'translateY(0) translateX(0) scale(1) rotateX(0deg)';
           observer.unobserve(el);
+          
+          setTimeout(() => {
+            if (el) el.style.willChange = 'auto';
+          }, duration + delay);
         }
       },
       { threshold, rootMargin: '0px 0px -40px 0px' }

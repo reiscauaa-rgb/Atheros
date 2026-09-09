@@ -1,12 +1,8 @@
-'use client';
+﻿const fs = require('fs');
+const filePath = 'src/app/servicos/ServicosClientPage.tsx';
+let content = fs.readFileSync(filePath, 'utf-8');
 
-import styles from './servicos.module.css';
-import { useLanguage } from '@/lib/i18n/LanguageContext';
-import ScrollReveal from '@/components/ScrollReveal/ScrollReveal';
-import CTASection from '@/components/home/CTASection/CTASection';
-import Link from 'next/link';
-
-const services = {
+const newServicesJs = \const services = {
   pt: [
     {
       id: 'consular',
@@ -68,9 +64,9 @@ const services = {
       docsTitle: 'Tipos de procurações',
       howTitle: 'Como funciona',
       steps: [
-        'Você nos informa a finalidade da procuração',
-        'Elaboramos a procuração pública de acordo com a necessidade do processo',
-        'Orientamos o procedimento de reconhecimento de assinatura via Consulado ou Notário Público, conforme o caso',
+        'Você nos informa a finalidade da procuração.',
+        'Elaboramos a procuração pública de acordo com a necessidade do processo.',
+        'Orientamos o procedimento de reconhecimento de assinatura via Consulado ou Notário Público, conforme o caso.',
       ],
       docs: ['Venda de imóvel', 'Transações bancárias', 'Representação perante o INSS', 'Inventário', 'Matrícula escolar', 'Procurações para outras finalidades'],
       warning: 'Procurações mal redigidas podem ser recusadas no cartório brasileiro. Garantimos a redação correta.',
@@ -177,98 +173,8 @@ const services = {
       warning: null,
     },
   ],
-};
+};\;
 
-const t = {
-  pt: { eyebrow: 'O que fazemos', heroTitle: 'Nossos\nserviços', heroSub: 'Tudo que você precisa para manter sua documentação brasileira em dia nos EUA.', docsTitle: 'Documentos que atendemos', stepsTitle: 'Passo a passo', warningLabel: '⚠️ Atenção', ctaLabel: 'Solicitar agora' },
-  en: { eyebrow: 'What we do', heroTitle: 'Our\nservices', heroSub: 'Everything you need to keep your Brazilian documentation up to date in the USA.', docsTitle: 'Documents we handle', stepsTitle: 'Step by step', warningLabel: '⚠️ Important', ctaLabel: 'Request now' },
-};
-
-export default function ServicosClientPage() {
-  const { language } = useLanguage();
-  const copy = t[language];
-  const items = services[language];
-
-  return (
-    <main>
-      {/* Hero */}
-      <section className={styles.hero}>
-        <div className={styles.heroBg} aria-hidden />
-        <div className="container">
-          <div className={styles.heroContent}>
-            <span className={styles.heroEyebrow}>{copy.eyebrow}</span>
-            <h1 className={styles.heroTitle}>
-              {copy.heroTitle.split('\n').map((l, i) => <span key={i}>{l}{i === 0 && <br />}</span>)}
-            </h1>
-            <p className={styles.heroSub}>{copy.heroSub}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section className={styles.servicesSection}>
-        <div className="container">
-          {items.map((service, idx) => (
-            <ScrollReveal key={service.id} variant="fadeUp">
-              <div id={service.id} className={`${styles.serviceBlock} ${idx % 2 === 1 ? styles.serviceBlockReverse : ''}`}>
-                {/* Visual side */}
-                <div className={styles.serviceVisual}>
-                  <div className={styles.serviceIconWrap}>
-                    <span className={styles.serviceIcon}>{service.icon}</span>
-                  </div>
-                  <div className={styles.serviceQuickDocs}>
-                    <h4 className={styles.serviceDocsTitle}>{service.docsTitle || copy.docsTitle}</h4>
-                    <ul className={styles.serviceDocsList}>
-                      {service.docs.map((doc) => (
-                        <li key={doc} className={styles.serviceDocItem}>
-                          <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden>
-                            <polyline points="20 6 9 17 4 12" />
-                          </svg>
-                          {doc}
-                        </li>
-                      ))}
-                    </ul>
-                    <a
-                      href={`https://api.whatsapp.com/send/?phone=19046515886&text=${encodeURIComponent(language === 'pt' ? `Olá! Gostaria de saber mais sobre ${service.title}.` : `Hello! I'd like to know more about ${service.title}.`)}`}
-                      target="_blank" rel="noopener noreferrer"
-                      className={styles.serviceCtaBtn}
-                    >
-                      {copy.ctaLabel}
-                    </a>
-                  </div>
-                </div>
-
-                {/* Content side */}
-                <div className={styles.serviceContent}>
-                  <span className={styles.serviceNum}>0{idx + 1}</span>
-                  <h2 className={styles.serviceTitle}>{service.title}</h2>
-                  <p className={styles.serviceSubtitle}>{service.subtitle}</p>
-                  <p className={styles.serviceDesc}>{service.description}</p>
-
-                  <h3 className={styles.stepsTitle}>{service.howTitle || copy.stepsTitle}</h3>
-                  <ol className={styles.stepsList}>
-                    {service.steps.map((step, i) => (
-                      <li key={i} className={styles.stepItem}>
-                        <span className={styles.stepNum}>{i + 1}</span>
-                        <span>{step}</span>
-                      </li>
-                    ))}
-                  </ol>
-
-                  {service.warning && (
-                    <div className={styles.warningBox}>
-                      <strong>{copy.warningLabel}</strong>
-                      <p>{service.warning}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      <CTASection />
-    </main>
-  );
-}
+content = content.replace(/const services = \{[\s\S]*?\n\};\n\nconst t = \{/, newServicesJs + '\n\nconst t = {');
+fs.writeFileSync(filePath, content, 'utf-8');
+console.log('Done!');

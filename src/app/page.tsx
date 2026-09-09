@@ -8,9 +8,9 @@ import FAQSection from '@/components/home/FAQSection/FAQSection';
 import CTASection from '@/components/home/CTASection/CTASection';
 
 export const metadata: Metadata = {
-  title: 'Atheros — Assessoria Documental para Brasileiros nos EUA',
+  title: 'Atheros Assessoria Documental para Brasileiros nos EUA',
   description:
-    'Há mais de 20 anos resolvendo passaportes, procurações e certificados digitais para brasileiros nos EUA. Atendimento 100% em português.',
+    'Há mais de 16 anos resolvendo passaportes, procurações e e-Notariado para brasileiros nos EUA. Atendimento 100% em português.',
 };
 
 export default function HomePage() {

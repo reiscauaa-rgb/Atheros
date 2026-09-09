@@ -11,7 +11,7 @@ const t = {
     eyebrow: 'Quem somos',
     title: 'Brasileiras que entendem\nsua história',
     p1: 'A Atheros nasceu da necessidade real vivida pelas próprias fundadoras: brasileiras que moram nos Estados Unidos há mais de 30 anos e conhecem de perto as dificuldades que nossa comunidade enfrenta com a burocracia dos consulados e com a distância do Brasil.',
-    p2: 'Com mais de 20 anos de atuação no mercado, construímos uma reputação sólida baseada em três pilares: ética, agilidade e atendimento humanizado. Somos parceiras da comunidade brasileira — não apenas um serviço.',
+    p2: 'Com mais de 16 anos de atuação no mercado, construímos uma reputação sólida baseada em três pilares: ética, agilidade e atendimento humanizado. Somos parceiras da comunidade brasileira não apenas um serviço.',
     values: [
       { icon: '🛡️', title: 'Ética', desc: 'Transparência em cada etapa do processo, sem surpresas.' },
       { icon: '⚡', title: 'Agilidade', desc: 'Processos otimizados para o menor prazo possível.' },
@@ -23,7 +23,7 @@ const t = {
     eyebrow: 'Who we are',
     title: 'Brazilian women who\nunderstand your story',
     p1: 'Atheros was born out of a real need experienced by the founders themselves: Brazilian women who have lived in the United States for over 30 years and know firsthand the difficulties our community faces with consular bureaucracy and the distance from Brazil.',
-    p2: 'With over 20 years in the market, we have built a solid reputation based on three pillars: ethics, agility and humanized service. We are partners of the Brazilian community — not just a service.',
+    p2: 'With over 16 years in the market, we have built a solid reputation based on three pillars: ethics, agility and humanized service. We are partners of the Brazilian community not just a service.',
     values: [
       { icon: '🛡️', title: 'Ethics', desc: 'Transparency at every step, no surprises.' },
       { icon: '⚡', title: 'Agility', desc: 'Optimized processes for the shortest possible timeframe.' },
@@ -41,7 +41,7 @@ export default function AboutSection() {
     <section className={styles.section} id="sobre">
       <div className="container">
         <div className={styles.inner}>
-          {/* Left — Visual */}
+          {/* Left Visual */}
           <ScrollReveal variant="fadeLeft" className={styles.visualWrap}>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: '400px' }}>
               <LocationMap 
@@ -51,7 +51,7 @@ export default function AboutSection() {
             </div>
           </ScrollReveal>
 
-          {/* Right — Content */}
+          {/* Right Content */}
           <ScrollReveal variant="fadeRight">
             <div className={styles.content}>
               <span className="section-label">{copy.eyebrow}</span>

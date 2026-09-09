@@ -27,7 +27,7 @@ const testimonials = {
       city: 'New York, NY',
       initials: 'FO',
       rating: 5,
-      text: 'Tentei fazer o e-CPF sozinha por meses e não conseguia. Em menos de uma semana com a Atheros, tudo resolvido. Atendimento em português faz toda a diferença!',
+      text: 'Tentei utilizar o e-Notariado sozinha por meses e não conseguia. Em menos de uma semana com a Atheros, tudo resolvido. Atendimento em português faz toda a diferença!',
     },
     {
       name: 'Carlos Souza',
@@ -41,7 +41,7 @@ const testimonials = {
       city: 'Stoughton, MA',
       initials: 'AL',
       rating: 5,
-      text: 'Clientes há mais de 5 anos. Já renovei passaporte, fiz procurações e obtive o certificado digital. Sempre com excelência, rapidez e muita atenção.',
+      text: 'Clientes há mais de 5 anos. Já renovei passaporte, fiz procurações e utilizei o e-Notariado. Sempre com excelência, rapidez e muita atenção.',
     },
     {
       name: 'João Batista',
@@ -71,7 +71,7 @@ const testimonials = {
       city: 'New York, NY',
       initials: 'FO',
       rating: 5,
-      text: 'I tried to get my e-CPF on my own for months and couldn\'t. In less than a week with Atheros, everything was resolved. Service in Portuguese makes all the difference!',
+      text: 'I tried to use e-Notariado on my own for months and couldn\'t. In less than a week with Atheros, everything was resolved. Service in Portuguese makes all the difference!',
     },
     {
       name: 'Carlos Souza',
@@ -85,7 +85,7 @@ const testimonials = {
       city: 'Stoughton, MA',
       initials: 'AL',
       rating: 5,
-      text: 'Clients for over 5 years. I\'ve renewed my passport, made powers of attorney and obtained the digital certificate. Always with excellence, speed and great care.',
+      text: 'Clients for over 5 years. I\'ve renewed my passport, made powers of attorney and used e-Notariado. Always with excellence, speed and great care.',
     },
     {
       name: 'João Batista',
@@ -101,12 +101,12 @@ const t = {
   pt: {
     eyebrow: 'Depoimentos',
     title: 'O que nossos clientes\nfalam sobre nós',
-    subtitle: 'Mais de 2.000 clientes satisfeitos ao longo de 20 anos de história.',
+    subtitle: 'Mais de 2.000 clientes satisfeitos ao longo de mais de 16 anos de história.',
   },
   en: {
     eyebrow: 'Testimonials',
     title: 'What our clients\nsay about us',
-    subtitle: 'Over 2,000 satisfied clients throughout 20 years of history.',
+    subtitle: 'Over 2,000 satisfied clients throughout more than 16 years of history.',
   },
 };
 

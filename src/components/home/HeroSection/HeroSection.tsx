@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './HeroSection.module.css';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { ContainerScroll } from '@/components/ui/ContainerScroll/ContainerScroll';
@@ -14,11 +15,11 @@ const t = {
     titleLine2: 'brasileira nos EUA,',
     titleAccent: 'sem burocracia.',
     subtitle:
-      'Há mais de 20 anos resolvendo a vida de brasileiros nos Estados Unidos. Passaportes, procurações, certidões e certificação digital com agilidade e segurança.',
+      'Há mais de 16 anos resolvendo a vida de brasileiros nos Estados Unidos. Passaportes, procurações, certidões e e-Notariado com agilidade e segurança.',
     cta1: 'Análise Gratuita',
     cta2: 'Nossos Serviços',
     badge1: '+2.000 clientes atendidos',
-    badge2: '20 anos de experiência',
+    badge2: '16+ anos de experiência',
     badge3: 'Atendimento 100% em português',
   },
   en: {
@@ -27,11 +28,11 @@ const t = {
     titleLine2: 'documents in the USA,',
     titleAccent: 'hassle-free.',
     subtitle:
-      'For over 20 years helping Brazilians in the United States. Passports, powers of attorney, certificates and digital certificates with speed and security.',
+      'For over 16 years helping Brazilians in the United States. Passports, powers of attorney, certificates and e-Notariado with speed and security.',
     cta1: 'Free Consultation',
     cta2: 'Our Services',
     badge1: '+2,000 clients served',
-    badge2: '20 years of experience',
+    badge2: '16+ years of experience',
     badge3: '100% service in Portuguese',
   },
 };
@@ -68,6 +69,7 @@ export default function HeroSection() {
             alt="Brasileira profissional nos EUA"
             className={styles.cardImg}
             draggable={false}
+            fetchPriority="high"
           />
 
           {/* Gradient overlay */}
