@@ -22,7 +22,20 @@ const services = {
         'Preparamos e orientamos cada etapa do processo',
         'Acompanhamos sua solicitação até a conclusão',
       ],
-      docs: ['Passaporte / renovação de passaporte', 'Atestado de residência e de vida', 'CPF e Título eleitoral', 'Autorização de viagem para menores', 'Certidões de nascimento e casamento', 'Alistamento e dispensa militar', 'Matrícula consular', 'Reconhecimento de assinatura e cópias'],
+      docs: [
+        'Passaporte / renovação de passaporte',
+        'Atestado de residência e de vida',
+        'CPF e Título eleitoral',
+        'Autorização de viagem para menores',
+        'Certidões de nascimento e casamento',
+        'Alistamento e dispensa militar',
+        'Matrícula consular',
+        'Reconhecimento de assinatura e cópias',
+        'Escrituras públicas',
+        'Declaração',
+        'Documentos para traslado de corpo e cinzas',
+        '2ª via de certidões consulares e no Brasil',
+      ],
       warning: 'O consulado pode recusar documentos por erros mínimos. Nossa análise prévia evita esse problema.',
     },
     {
@@ -107,7 +120,20 @@ const services = {
         'We prepare and guide each step of the process',
         'We monitor your request until completion',
       ],
-      docs: ['Passport / passport renewal', 'Residence and life certificate', 'CPF and Voter registration', 'Travel authorization for minors', 'Birth and marriage certificates', 'Military enlistment and dismissal', 'Consular registration', 'Signature recognition and copies'],
+      docs: [
+        'Passport / passport renewal',
+        'Residence and life certificate',
+        'CPF and Voter registration',
+        'Travel authorization for minors',
+        'Birth and marriage certificates',
+        'Military enlistment and dismissal',
+        'Consular registration',
+        'Signature recognition and copies',
+        'Public deeds',
+        'Declarations',
+        'Documents for transportation of body and ashes',
+        '2nd copy of consular and Brazilian certificates',
+      ],
       warning: 'The consulate can reject documents for minor errors. Our prior analysis prevents this problem.',
     },
     {
@@ -261,6 +287,52 @@ export default function ServicosClientPage() {
                       <p>{service.warning}</p>
                     </div>
                   )}
+
+                  {/* Dedicated subpage links for high-search topics */}
+                  <div className={styles.dedicatedLinks}>
+                    {service.id === 'consular' && (
+                      <Link href="/servicos/passaporte" className={styles.dedicatedLink}>
+                        <span>{language === 'pt' ? '📄 Guia Completo: Passaportes & Documentação Consular' : '📄 Full Guide: Passports & Consular Services'}</span>
+                        <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
+                      </Link>
+                    )}
+                    {service.id === 'vistos' && (
+                      <>
+                        <Link href="/servicos/vitem-xi" className={styles.dedicatedLink}>
+                          <span>{language === 'pt' ? '👨‍👩‍👧‍👦 Guia Completo: Visto VITEM XI (Reunificação Familiar)' : '👨‍👩‍👧‍👦 Full Guide: VITEM XI Visa (Family Reunification)'}</span>
+                          <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
+                        </Link>
+                        <Link href="/servicos/vistos" className={styles.dedicatedLink}>
+                          <span>{language === 'pt' ? '✈️ Guia Completo: e-Visa e Vistos para o Brasil' : '✈️ Full Guide: Brazil e-Visa & Visitor Visas'}</span>
+                          <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
+                        </Link>
+                      </>
+                    )}
+                    {service.id === 'legalizacao' && (
+                      <>
+                        <Link href="/servicos/apostilamento-de-haia" className={styles.dedicatedLink}>
+                          <span>{language === 'pt' ? '📜 Guia Completo: Apostilamento de Haia nos EUA' : '📜 Full Guide: Hague Apostille in the USA'}</span>
+                          <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
+                        </Link>
+                        <Link href="/servicos/traducoes" className={styles.dedicatedLink}>
+                          <span>{language === 'pt' ? '🌐 Guia Completo: Traduções Certificadas & Juramentadas' : '🌐 Full Guide: Certified & Sworn Translations'}</span>
+                          <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
+                        </Link>
+                      </>
+                    )}
+                    {service.id === 'procuracoes' && (
+                      <Link href="/servicos/procuracoes" className={styles.dedicatedLink}>
+                        <span>{language === 'pt' ? '📋 Guia Completo: Procurações Públicas para o Brasil' : '📋 Full Guide: Public Powers of Attorney for Brazil'}</span>
+                        <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
+                      </Link>
+                    )}
+                    {service.id === 'enotariado' && (
+                      <Link href="/servicos/enotariado" className={styles.dedicatedLink}>
+                        <span>{language === 'pt' ? '🔐 Guia Completo: e-Notariado para Brasileiros nos EUA' : '🔐 Full Guide: e-Notariado for Brazilians Abroad'}</span>
+                        <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
+                      </Link>
+                    )}
+                  </div>
                 </div>
               </div>
             </ScrollReveal>

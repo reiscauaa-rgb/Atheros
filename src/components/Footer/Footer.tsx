@@ -5,16 +5,24 @@ import Image from 'next/image';
 import styles from './Footer.module.css';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
+const currentYear = new Date().getFullYear();
+
+const SOCIAL_LINKS = {
+  facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/atherosassessoria',
+  instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://www.instagram.com/atherosassessoria',
+};
+
 const t = {
   pt: {
     tagline: 'Assessoria documental para brasileiros nos EUA há mais de 16 anos.',
     services: 'Serviços',
     servicesList: [
-      { label: 'Documentação Consular', href: '/servicos#consular' },
-      { label: 'Vistos', href: '/servicos#vistos' },
-      { label: 'Legalização e Traduções', href: '/servicos#legalizacao' },
-      { label: 'Procurações Públicas', href: '/servicos#procuracoes' },
-      { label: 'e-Notariado', href: '/servicos#enotariado' },
+      { label: 'Documentação Consular & Passaporte', href: '/servicos/passaporte' },
+      { label: 'Vistos & VITEM XI', href: '/servicos/vitem-xi' },
+      { label: 'Apostilamento de Haia', href: '/servicos/apostilamento-de-haia' },
+      { label: 'Traduções Certificadas & Juramentadas', href: '/servicos/traducoes' },
+      { label: 'Procurações Públicas', href: '/servicos/procuracoes' },
+      { label: 'e-Notariado', href: '/servicos/enotariado' },
     ],
     links: 'Links Úteis',
     linksList: [
@@ -27,7 +35,7 @@ const t = {
     contact: 'Contato',
     address: '2 Canton St, unit 115\nStoughton, MA 02072',
     phones: ['(904) 651-5886', '(508) 648-9143'],
-    rights: '© 2025 Atheros. Todos os direitos reservados.',
+    rights: `© ${currentYear} Atheros. Todos os direitos reservados.`,
     privacy: 'Política de Privacidade',
     terms: 'Termos de Uso',
     cta: 'Análise Gratuita',
@@ -36,11 +44,12 @@ const t = {
     tagline: 'Document services for Brazilians in the USA for over 16 years.',
     services: 'Services',
     servicesList: [
-      { label: 'Consular Documentation', href: '/servicos#consular' },
-      { label: 'Visas', href: '/servicos#vistos' },
-      { label: 'Legalization and Translations', href: '/servicos#legalizacao' },
-      { label: 'Public Powers of Attorney', href: '/servicos#procuracoes' },
-      { label: 'e-Notariado', href: '/servicos#enotariado' },
+      { label: 'Consular Documentation & Passports', href: '/servicos/passaporte' },
+      { label: 'Visas & VITEM XI', href: '/servicos/vitem-xi' },
+      { label: 'Hague Apostille', href: '/servicos/apostilamento-de-haia' },
+      { label: 'Certified & Sworn Translations', href: '/servicos/traducoes' },
+      { label: 'Public Powers of Attorney', href: '/servicos/procuracoes' },
+      { label: 'e-Notariado', href: '/servicos/enotariado' },
     ],
     links: 'Quick Links',
     linksList: [
@@ -53,7 +62,7 @@ const t = {
     contact: 'Contact',
     address: '2 Canton St, unit 115\nStoughton, MA 02072',
     phones: ['(904) 651-5886', '(508) 648-9143'],
-    rights: '© 2025 Atheros. All rights reserved.',
+    rights: `© ${currentYear} Atheros. All rights reserved.`,
     privacy: 'Privacy Policy',
     terms: 'Terms of Use',
     cta: 'Free Consultation',
@@ -114,7 +123,7 @@ export default function Footer() {
             {/* Social */}
             <div className={styles.socials}>
               <a
-                href="https://facebook.com"
+                href={SOCIAL_LINKS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -125,7 +134,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://instagram.com"
+                href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"

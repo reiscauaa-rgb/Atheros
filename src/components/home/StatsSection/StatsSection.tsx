@@ -15,15 +15,15 @@ function StatPill({ num, suffix, label }: { num: number; suffix: string; label: 
 
 const stats = {
   pt: [
-    { num: 20, suffix: '+', label: 'Anos de experiência' },
+    { num: 16, suffix: '+', label: 'Anos de experiência' },
     { num: 2000, suffix: '+', label: 'Clientes atendidos' },
-    { num: 3, suffix: '', label: 'Tipos de serviço' },
+    { num: 5, suffix: '', label: 'Tipos de serviço' },
     { num: 100, suffix: '%', label: 'Atendimento em português' },
   ],
   en: [
-    { num: 20, suffix: '+', label: 'Years of experience' },
+    { num: 16, suffix: '+', label: 'Years of experience' },
     { num: 2000, suffix: '+', label: 'Clients served' },
-    { num: 3, suffix: '', label: 'Service types' },
+    { num: 5, suffix: '', label: 'Service types' },
     { num: 100, suffix: '%', label: 'Service in Portuguese' },
   ],
 };

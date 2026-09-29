@@ -4,13 +4,15 @@ type SanityImageSource = any;
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';
 const dataset   = process.env.NEXT_PUBLIC_SANITY_DATASET   || 'production';
+const token     = process.env.SANITY_API_TOKEN || '';
 const isSanityConfigured = Boolean(projectId && /^[a-z0-9-]+$/.test(projectId));
 
 export const config = {
   projectId: isSanityConfigured ? projectId : 'placeholder',
   dataset,
   apiVersion: '2024-01-01',
-  useCdn: process.env.NODE_ENV === 'production',
+  useCdn: token ? false : process.env.NODE_ENV === 'production',
+  token: token || undefined,
 };
 
 export const sanityClient = isSanityConfigured ? createClient(config) : null;
@@ -46,11 +48,11 @@ export interface Post {
 // GROQ Queries
 // ─────────────────────────────────────────
 
-/** Todos os posts ordenados por data */
+/** Todos os posts ordenados por data (apenas publicados com data <= atual) */
 export async function getAllPosts(): Promise<Post[]> {
   if (!sanityClient) return [];
   return sanityClient.fetch(
-    `*[_type == "post"] | order(publishedAt desc) {
+    `*[_type == "post" && (!defined(publishedAt) || publishedAt <= now())] | order(publishedAt desc) {
       _id,
       title, titleEn,
       slug,
@@ -63,7 +65,7 @@ export async function getAllPosts(): Promise<Post[]> {
   );
 }
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
+const POST_QUERY = `*[_type == "post" && slug.current == $slug && (!defined(publishedAt) || publishedAt <= now())][0] {
   _id,
   title, titleEn,
   slug,

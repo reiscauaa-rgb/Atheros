@@ -115,6 +115,34 @@
 .warningBox strong { display: block; color: var(--color-accent); font-size: var(--font-size-sm); margin-bottom: var(--space-1); }
 .warningBox p { font-size: var(--font-size-sm); color: var(--color-text-muted); line-height: 1.6; }
 
+.dedicatedLinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.dedicatedLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.dedicatedLink:hover {
+  border-color: var(--color-primary);
+  background: var(--color-bg-alt);
+  transform: translateX(4px);
+}
+
 @media (max-width: 1024px) {
   .serviceBlock, .serviceBlockReverse { grid-template-columns: 1fr; direction: ltr; }
   .serviceIconWrap { width: 72px; height: 72px; }

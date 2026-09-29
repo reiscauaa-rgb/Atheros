@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ContatoClientPage from './ContatoClientPage';
 
 export const metadata: Metadata = {
-  title: 'Contato Atheros',
+  title: 'Contato',
   description:
     'Entre em contato com a Atheros para resolver sua documentação brasileira nos EUA. Atendimento em português pelo WhatsApp e formulário.',
 };

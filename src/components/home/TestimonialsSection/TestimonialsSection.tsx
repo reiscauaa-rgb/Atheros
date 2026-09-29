@@ -138,24 +138,35 @@ function VerticalMarquee({
   items,
   reverse = false,
   pauseOnHover = true,
+  isAriaHidden = false,
 }: {
   items: (typeof testimonials.pt);
   reverse?: boolean;
   pauseOnHover?: boolean;
+  isAriaHidden?: boolean;
 }) {
-  // Repeat 3× to ensure seamless loop
-  const repeated = useMemo(() => [...items, ...items, ...items], [items]);
-
   return (
     <div
       className={`${styles.vMarqueeWrap} ${pauseOnHover ? styles.pauseOnHover : ''}`}
+      aria-hidden={isAriaHidden ? 'true' : undefined}
     >
       <div
         className={`${styles.vMarqueeTrack} ${reverse ? styles.vReverse : ''}`}
       >
-        {repeated.map((item, i) => (
-          <TestimonialCard key={i} {...item} />
+        {items.map((item, i) => (
+          <TestimonialCard key={`orig-${i}`} {...item} />
         ))}
+        {/* Visual clone tracks for seamless infinite scroll - hidden from crawlers & screen readers */}
+        <div className={styles.cloneGroup} aria-hidden="true">
+          {items.map((item, i) => (
+            <TestimonialCard key={`clone1-${i}`} {...item} />
+          ))}
+        </div>
+        <div className={styles.cloneGroup} aria-hidden="true">
+          {items.map((item, i) => (
+            <TestimonialCard key={`clone2-${i}`} {...item} />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -167,8 +178,41 @@ export default function TestimonialsSection() {
   const copy = t[language];
   const items = testimonials[language];
 
+  // Distribute items so visual columns look diverse rather than identical
+  const col1 = items;
+  const col2 = [...items.slice(2), ...items.slice(0, 2)];
+  const col3 = [...items.slice(4), ...items.slice(0, 4)];
+  const col4 = [...items.slice(1), ...items.slice(0, 1)];
+
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Atheros Assessoria Documental',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5.0',
+      reviewCount: '2000',
+    },
+    review: items.map((review) => ({
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: review.name,
+      },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: review.rating.toString(),
+      },
+      reviewBody: review.text,
+    })),
+  };
+
   return (
     <section className={styles.section}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
       <div className="container">
         <ScrollReveal variant="fadeUp">
           <div className={styles.header}>
@@ -183,13 +227,13 @@ export default function TestimonialsSection() {
         </ScrollReveal>
       </div>
 
-      {/* 3-D vertical marquee */}
+      {/* 3-D vertical marquee: primary column is readable, decorative columns are aria-hidden to eliminate HTML duplication */}
       <div className={styles.marquee3dWrapper}>
         <div className={styles.marquee3dInner}>
-          <VerticalMarquee items={items} />
-          <VerticalMarquee items={items} reverse />
-          <VerticalMarquee items={items} />
-          <VerticalMarquee items={items} reverse />
+          <VerticalMarquee items={col1} />
+          <VerticalMarquee items={col2} reverse isAriaHidden />
+          <VerticalMarquee items={col3} isAriaHidden />
+          <VerticalMarquee items={col4} reverse isAriaHidden />
 
           {/* Fade-out gradients */}
           <div className={`${styles.fadeEdge} ${styles.fadeTop}`} />

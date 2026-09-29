@@ -15,7 +15,7 @@ const t = {
     titleLine2: 'brasileira nos EUA,',
     titleAccent: 'sem burocracia.',
     subtitle:
-      'Há mais de 16 anos resolvendo a vida de brasileiros nos Estados Unidos. Passaportes, procurações, certidões e e-Notariado com agilidade e segurança.',
+      'Há mais de 16 anos resolvendo a vida de brasileiros nos Estados Unidos. Passaportes, vistos, apostilamento de Haia, traduções, procurações e e-Notariado com agilidade e segurança.',
     cta1: 'Análise Gratuita',
     cta2: 'Nossos Serviços',
     badge1: '+2.000 clientes atendidos',
@@ -28,7 +28,7 @@ const t = {
     titleLine2: 'documents in the USA,',
     titleAccent: 'hassle-free.',
     subtitle:
-      'For over 16 years helping Brazilians in the United States. Passports, powers of attorney, certificates and e-Notariado with speed and security.',
+      'For over 16 years helping Brazilians in the United States. Passports, visas, Hague apostille, translations, powers of attorney and e-Notariado with speed and security.',
     cta1: 'Free Consultation',
     cta2: 'Our Services',
     badge1: '+2,000 clients served',
