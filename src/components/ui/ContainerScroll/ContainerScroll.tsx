@@ -22,9 +22,10 @@ export const ContainerScroll = ({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const rotate = useTransform(scrollYProgress, (val) => (isMobile ? 0 : 20 * (1 - val)));
-  const scale = useTransform(scrollYProgress, (val) => (isMobile ? 0.98 + 0.02 * val : 1.05 - 0.05 * val));
-  const translate = useTransform(scrollYProgress, (val) => (isMobile ? 0 : -100 * val));
+  // Responsive 3D scroll animation: active on both mobile and desktop!
+  const rotate = useTransform(scrollYProgress, (val) => (isMobile ? 14 * (1 - val) : 20 * (1 - val)));
+  const scale = useTransform(scrollYProgress, (val) => (isMobile ? 0.92 + 0.08 * val : 1.05 - 0.05 * val));
+  const translate = useTransform(scrollYProgress, (val) => (isMobile ? -30 * val : -100 * val));
 
   return (
     <div
@@ -39,7 +40,7 @@ export const ContainerScroll = ({
     >
       <div className="containerPerspective" style={{ width: '100%', position: 'relative' }}>
         <ScrollHeader translate={translate} titleComponent={titleComponent} />
-        <ScrollCard rotate={rotate} translate={translate} scale={scale} isMobile={isMobile}>
+        <ScrollCard rotate={rotate} scale={scale} isMobile={isMobile}>
           {children}
         </ScrollCard>
       </div>
@@ -70,18 +71,18 @@ export const ScrollCard = ({
 }: {
   rotate: MotionValue<number>;
   scale: MotionValue<number>;
-  translate?: MotionValue<number>;
   children: React.ReactNode;
   isMobile?: boolean;
 }) => (
   <motion.div
     style={{
-      rotateX: isMobile ? 0 : rotate,
+      rotateX: rotate,
       scale,
       boxShadow: isMobile
-        ? '0 12px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12)'
+        ? '0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15)'
         : '0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003',
       willChange: 'transform',
+      transformStyle: 'preserve-3d',
     }}
     className="scrollCard"
   >

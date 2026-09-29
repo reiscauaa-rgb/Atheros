@@ -33,8 +33,15 @@ const t = {
       { label: 'Contato', href: '/contato' },
     ],
     contact: 'Contato',
-    address: '2 Canton St, unit 115\nStoughton, MA 02072',
-    phones: ['(904) 651-5886', '(508) 648-9143'],
+    address: '2 Canton St, Unit B 115\nTrack Plaza • Stoughton, MA 02072',
+    addressRef: 'Ao lado do rest. Sunshine e da linha do trem',
+    phones: [
+      { num: '(774) 707-0082', tel: '17747070082', isWhatsApp: false },
+      { num: '(774) 801-8903', tel: '17748018903', isWhatsApp: false },
+      { num: '(904) 651-5886', tel: '19046515886', isWhatsApp: true },
+    ],
+    walkinNotice: 'Presencial por ordem de chegada',
+    onlineNotice: 'Online: Seg–Dom das 9h às 21h',
     rights: `© ${currentYear} Atheros. Todos os direitos reservados.`,
     privacy: 'Política de Privacidade',
     terms: 'Termos de Uso',
@@ -60,8 +67,15 @@ const t = {
       { label: 'Contact', href: '/contato' },
     ],
     contact: 'Contact',
-    address: '2 Canton St, unit 115\nStoughton, MA 02072',
-    phones: ['(904) 651-5886', '(508) 648-9143'],
+    address: '2 Canton St, Unit B 115\nTrack Plaza • Stoughton, MA 02072',
+    addressRef: 'Next to Sunshine Brazilian Rest. & Commuter Rail',
+    phones: [
+      { num: '(774) 707-0082', tel: '17747070082', isWhatsApp: false },
+      { num: '(774) 801-8903', tel: '17748018903', isWhatsApp: false },
+      { num: '(904) 651-5886', tel: '19046515886', isWhatsApp: true },
+    ],
+    walkinNotice: 'Walk-ins only (first-come, first-served)',
+    onlineNotice: 'Online: Daily 9am – 9pm',
     rights: `© ${currentYear} Atheros. All rights reserved.`,
     privacy: 'Privacy Policy',
     terms: 'Terms of Use',
@@ -182,17 +196,29 @@ export default function Footer() {
             <h3 className={styles.colTitle}>{copy.contact}</h3>
             <address className={styles.address}>
               <p>{copy.address.split('\n').map((line, i) => <span key={i}>{line}<br /></span>)}</p>
+              <p className={styles.addressRefNote}>📍 {copy.addressRef}</p>
             </address>
             <div className={styles.phones}>
-              {copy.phones.map((phone) => (
+              {copy.phones.map((p, idx) => (
                 <a
-                  key={phone}
-                  href={`tel:${phone.replace(/\D/g, '')}`}
+                  key={idx}
+                  href={
+                    p.isWhatsApp
+                      ? 'https://api.whatsapp.com/send/?phone=19046515886'
+                      : `tel:${p.tel}`
+                  }
+                  target={p.isWhatsApp ? '_blank' : undefined}
+                  rel={p.isWhatsApp ? 'noopener noreferrer' : undefined}
                   className={styles.phone}
                 >
-                  {phone}
+                  {p.num}
+                  {p.isWhatsApp && <span className={styles.waBadge}>WhatsApp</span>}
                 </a>
               ))}
+            </div>
+            <div className={styles.footerHoursNote}>
+              <p>⚡ {copy.walkinNotice}</p>
+              <p>🌐 {copy.onlineNotice}</p>
             </div>
           </div>
         </div>

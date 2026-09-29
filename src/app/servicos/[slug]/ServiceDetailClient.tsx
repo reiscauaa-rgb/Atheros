@@ -71,7 +71,7 @@ export default function ServiceDetailClient({ slug }: ServiceDetailClientProps) 
       name: 'Atheros Assessoria Documental',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '2 Canton St, unit 115',
+        streetAddress: '2 Canton St, Unit B 115, Track Plaza',
         addressLocality: 'Stoughton',
         addressRegion: 'MA',
         postalCode: '02072',

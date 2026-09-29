@@ -39,34 +39,32 @@
 
 @media (max-width: 768px) {
   .containerScroll {
-    height: auto;
-    padding: 0 1rem 3rem;
+    height: clamp(52rem, 125vh, 60rem);
+    padding: 0 1rem 2.5rem;
   }
 
   .containerPerspective {
-    perspective: none;
+    perspective: 1200px;
   }
 
   .scrollHeader {
     max-width: 100%;
-    padding: 0 0.5rem;
+    padding: 0 0.5rem 1rem;
   }
 
   .scrollCard {
-    margin: 0.5rem auto 0;
-    height: auto;
-    min-height: 540px;
+    margin: 0 auto;
+    height: clamp(35rem, 120vw, 39rem);
+    max-width: min(100%, 25rem);
     border-radius: 24px;
     border-width: 2px;
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
     padding: 6px;
-    background: #0f1c3f;
-    max-width: 100%;
+    background: #0d1a4d;
   }
 
   .scrollCardInner {
     border-radius: 18px;
-    min-height: 528px;
     height: 100%;
   }
 }

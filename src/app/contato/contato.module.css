@@ -169,6 +169,231 @@
   line-height: 1.5;
 }
 
+.infoItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.phoneList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.phoneLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.phoneLink:hover {
+  color: var(--color-accent-dark);
+}
+
+.waTag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #25d366;
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.addressPrimary {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.addressSecondary {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.addressRefNote {
+  font-size: 0.75rem;
+  color: #9a3412;
+  font-weight: 600;
+  background: #ffedd5;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  margin-top: 0.35rem;
+  line-height: 1.4;
+}
+
+.mapsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  margin-top: 0.4rem;
+}
+
+.mapsBtn:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* ── Walk-in Alert Notice ── */
+.walkinAlert {
+  background: #fffbeb;
+  border: 1.5px solid #fde68a;
+  border-left: 5px solid #f59e0b;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+}
+
+.walkinHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.walkinBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #b45309;
+}
+
+.walkinText {
+  font-size: 0.82rem;
+  color: #92400e;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Hours Box ── */
+.hoursBox {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hoursHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+}
+
+.hoursTitle {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.scheduleList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.65rem;
+}
+
+.scheduleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.06);
+}
+
+.scheduleDay {
+  font-weight: 700;
+  color: var(--color-text);
+  min-width: 100px;
+}
+
+.scheduleTime {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  text-align: right;
+}
+
+.onlineSupportBox {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.onlineDot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.onlineLabel {
+  color: #166534;
+}
+
+.onlineTime {
+  color: #15803d;
+}
+
+/* ── Partner Box ── */
+.partnerBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  flex-wrap: wrap;
+  padding-top: 0.25rem;
+}
+
+.partnerLabel {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.partnerLink {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.partnerLink:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
 /* ── Form Panel (right) ── */
 .formPanel {
   display: flex;

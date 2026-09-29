@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton/WhatsAppButton';
+import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
 
 export default function ConditionalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -19,6 +20,7 @@ export default function ConditionalLayout({ children }: { children: React.ReactN
       {children}
       <Footer />
       <WhatsAppButton />
+      <ScrollToTop />
     </>
   );
 }
