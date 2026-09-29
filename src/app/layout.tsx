@@ -39,6 +39,15 @@ export const metadata: Metadata = {
     description:
       'Há mais de 16 anos ajudando brasileiros nos EUA com documentação consular, procurações públicas e e-Notariado.',
   },
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   robots: 'index, follow',
 };
 

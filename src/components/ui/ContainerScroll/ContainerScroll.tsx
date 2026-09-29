@@ -22,21 +22,24 @@ export const ContainerScroll = ({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const scaleDimensions = () => (isMobile ? [0.7, 0.9] : [1.05, 1]);
-
-  const rotate    = useTransform(scrollYProgress, [0, 1], [20, 0]);
-  const scale     = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const rotate = useTransform(scrollYProgress, (val) => (isMobile ? 0 : 20 * (1 - val)));
+  const scale = useTransform(scrollYProgress, (val) => (isMobile ? 0.98 + 0.02 * val : 1.05 - 0.05 * val));
+  const translate = useTransform(scrollYProgress, (val) => (isMobile ? 0 : -100 * val));
 
   return (
     <div
       className="containerScroll"
       ref={containerRef}
-      style={{ height: 'clamp(55rem, 80vw, 80rem)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', padding: '1rem' }}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+      }}
     >
-      <div style={{ width: '100%', position: 'relative', perspective: '1000px' }}>
+      <div className="containerPerspective" style={{ width: '100%', position: 'relative' }}>
         <ScrollHeader translate={translate} titleComponent={titleComponent} />
-        <ScrollCard rotate={rotate} translate={translate} scale={scale}>
+        <ScrollCard rotate={rotate} translate={translate} scale={scale} isMobile={isMobile}>
           {children}
         </ScrollCard>
       </div>
@@ -63,17 +66,21 @@ export const ScrollCard = ({
   rotate,
   scale,
   children,
+  isMobile,
 }: {
   rotate: MotionValue<number>;
   scale: MotionValue<number>;
-  translate: MotionValue<number>;
+  translate?: MotionValue<number>;
   children: React.ReactNode;
+  isMobile?: boolean;
 }) => (
   <motion.div
     style={{
-      rotateX: rotate,
+      rotateX: isMobile ? 0 : rotate,
       scale,
-      boxShadow: '0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003',
+      boxShadow: isMobile
+        ? '0 12px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12)'
+        : '0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003',
       willChange: 'transform',
     }}
     className="scrollCard"

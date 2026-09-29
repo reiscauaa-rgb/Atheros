@@ -3,6 +3,12 @@
 .containerScroll {
   position: relative;
   z-index: 1;
+  height: clamp(55rem, 80vw, 80rem);
+  padding: 1rem;
+}
+
+.containerPerspective {
+  perspective: 1000px;
 }
 
 .scrollHeader {
@@ -32,8 +38,35 @@
 }
 
 @media (max-width: 768px) {
+  .containerScroll {
+    height: auto;
+    padding: 0 1rem 3rem;
+  }
+
+  .containerPerspective {
+    perspective: none;
+  }
+
+  .scrollHeader {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
   .scrollCard {
-    height: clamp(18rem, 60vw, 26rem);
-    border-radius: 20px;
+    margin: 0.5rem auto 0;
+    height: auto;
+    min-height: 540px;
+    border-radius: 24px;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.15);
+    padding: 6px;
+    background: #0f1c3f;
+    max-width: 100%;
+  }
+
+  .scrollCardInner {
+    border-radius: 18px;
+    min-height: 528px;
+    height: 100%;
   }
 }

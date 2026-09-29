@@ -63,14 +63,17 @@ export default function HeroSection() {
       >
         {/* Card image with info overlay */}
         <div className={styles.cardContent}>
-          {/* Background image */}
-          <img
-            src="/images/hero/hero-card.jpg"
-            alt="Brasileira profissional nos EUA"
-            className={styles.cardImg}
-            draggable={false}
-            fetchPriority="high"
-          />
+          {/* Responsive Background image */}
+          <picture className={styles.cardPicture}>
+            <source media="(max-width: 768px)" srcSet="/images/hero/hero-card-mobile.jpg" />
+            <img
+              src="/images/hero/hero-card.jpg"
+              alt="Assessoria Documental Atheros - Atendimento a Brasileiros nos EUA"
+              className={styles.cardImg}
+              draggable={false}
+              fetchPriority="high"
+            />
+          </picture>
 
           {/* Gradient overlay */}
           <div className={styles.cardOverlay} />

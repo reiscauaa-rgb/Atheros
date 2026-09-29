@@ -77,6 +77,12 @@
   height: 100%;
 }
 
+.cardPicture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .cardImg {
   width: 100%;
   height: 100%;
@@ -94,6 +100,7 @@
     rgba(5, 15, 50, 0.75) 40%,
     rgba(5, 15, 50, 0.1) 100%
   );
+  pointer-events: none;
 }
 
 /* ── Info panel (on top of image, left side) ── */
@@ -183,24 +190,106 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .cardInfo {
-    max-width: 100%;
-    background: linear-gradient(to top, rgba(5, 15, 50, 0.95) 0%, rgba(5, 15, 50, 0.6) 100%);
-    padding: 1.25rem;
+  .titleBlock {
+    padding-top: calc(var(--header-height) - 15px);
+    padding-bottom: 1.25rem;
+    gap: 0.75rem;
+  }
+
+  .eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+  }
+
+  .title {
+    font-size: clamp(2.1rem, 8.5vw, 2.75rem);
+    line-height: 1.1;
+  }
+
+  .cardContent {
+    min-height: 528px;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-end;
+  }
+
+  .cardPicture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .cardImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .cardOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(5, 15, 50, 0.08) 0%,
+      rgba(5, 15, 50, 0.28) 30%,
+      rgba(5, 15, 50, 0.82) 52%,
+      rgba(5, 15, 50, 0.98) 75%,
+      #050f32 100%
+    );
+  }
+
+  .cardInfo {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    inset: auto;
+    padding: 1.5rem 1.25rem 1.5rem;
+    gap: 1.1rem;
+    margin-top: auto;
+    background: none;
+  }
+
+  .cardSubtitle {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.94);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .cardActions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.82rem;
+  }
+
+  .cardBadges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .cardBadge {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.88);
   }
 }
 
 @media (max-width: 480px) {
   .title {
-    font-size: clamp(2.2rem, 10vw, 3rem);
-  }
-
-  .cardActions {
-    flex-direction: column;
-  }
-
-  .btn {
-    justify-content: center;
+    font-size: clamp(2rem, 8.5vw, 2.5rem);
   }
 }
